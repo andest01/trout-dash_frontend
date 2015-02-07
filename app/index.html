@@ -41,7 +41,10 @@
     </div>
 
     <div class="container">
-    <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div>
+    <div ng-controller="MainCtrl"></div>
+      <div data-you-are-a-dick>
+      More stuff
+      </div>
     </div>
 
     <div class="footer">
@@ -70,12 +73,16 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/streamlistcontroller.js"></script>
+        <script src="scripts/directives/streamlistdirective.js"></script>
+        <script src="scripts/directives/streamlistitemdirective.js"></script>
         <!-- endbuild -->
 </body>
 </html>
