@@ -7,12 +7,12 @@
  * # StreamListItemDirective
  */
 angular.module('troutDashApp')
-  .directive('StreamListItemDirective', function () {
+  .directive('streamListItemDirective', function () {
     return {
-      template: '<div></div>',
-      restrict: 'E',
+      templateUrl: '/views/streamlistitemtemplate.html',
+      restrict: 'A',
       link: function postLink(scope, element, attrs) {
-        element.text('this is the StreamListItemDirective directive');
+      	console.log(scope.stream);
       }
     };
   });

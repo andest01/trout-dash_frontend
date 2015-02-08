@@ -20,30 +20,12 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
 
-            <a class="navbar-brand" href="#/">troutDash</a>
-          </div>
-
-          <div class="collapse">
-
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="container">
-    <div ng-controller="MainCtrl"></div>
-      <div data-you-are-a-dick>
-      More stuff
+    <div ng-controller="StreamlistcontrollerCtrl"></div>
+      <div data-stream-list>
+
       </div>
     </div>
 
@@ -77,12 +59,13 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/streamlistcontroller.js"></script>
-        <script src="scripts/directives/streamlistdirective.js"></script>
-        <script src="scripts/directives/streamlistitemdirective.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/streamlistcontroller.js"></script>
+    <script src="scripts/directives/streamlistdirective.js"></script>
+    <script src="scripts/directives/streamlistitemdirective.js"></script>
+    <script src="scripts/services/streamapiservice.js"></script>
+    <!-- endbuild -->
 </body>
 </html>
