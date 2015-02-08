@@ -18,7 +18,6 @@ angular.module('troutDashApp')
       		};
 	        StreamApiService.getStreams()
 				.then(function(streams) {
-					debugger;
 					scope.stage.streams = streams;
 				});
 

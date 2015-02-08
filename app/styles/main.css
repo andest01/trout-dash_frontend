@@ -1,173 +1,527 @@
-html, body, #container {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-body {
-  padding-top: 50px;
-}
-input[type="radio"], input[type="checkbox"] {
-  margin: 0;
-}
-#sidebar {
-  width: 250px;
-  height: 100%;
-  max-width: 100%;
-  float: left;
-  -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-}
-#map {
-  width: auto;
-  height: 100%;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+/* ---------------------------------------------------------------------
+Original Author: 
+Contributors: 
+
+Target Browsers: All
+Media Type: Screen, Projection
+Width: All Sizes
+------------------------------------------------------------------------ */
+
+/* ---------------------------------------------------------------------
+RESET CSS (thanks Eric Meyer)
+------------------------------------------------------------------------ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font-weight: inherit;
+    font-style: inherit;
+    font-family: inherit;
+    vertical-align: baseline;
 }
 
-.map-container {
-  height: 100%;
+body {
+    line-height: 1;
 }
-#loading {
-  position: absolute;
-  width: 220px;
-  height: 19px;
-  top: 50%;
-  left: 50%;
-  margin: -10px 0 0 -110px;
-  z-index: 20001;
+
+ol, ul {
+    list-style: none;
 }
-#features {
-  margin: 0px;
-  border: none;
-  border-radius: 0px;
-  -webkit-box-shadow: none;
-    box-shadow: none;
+
+blockquote {
+    quotes: none;
 }
-#sidebar-hide-btn {
-  margin-top: -2px;
+
+blockquote:before, blockquote:after {
+    content: '';
+    content: none;
 }
-#aboutTabsContent {
-  padding-top: 10px;
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
 }
-.progress-bar-full {
-  width: 100%;
+
+:focus {
+    outline: 0;
 }
-.white {
-  color: #FFFFFF;
+
+/* Always show a vertical scrollbar, even when there is no scrolling */
+html {
+    overflow-y: scroll;
 }
-.feature-row {
-  cursor: pointer;
+
+/* Don't let iOS and WinMobile mobile-optimize text for you */
+/* Turn this rule on for mobile sites or sites using mediaqueries */
+/*
+html {
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
 }
-.sidebar-wrapper {
-  width: 100%;
-  height: 100%;
-  position: relative;
+*/
+
+/* ---------------------------------------------------------------------
+ HTML5 Block / Inline Block declarations
+------------------------------------------------------------------------ */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
 }
-.sidebar-table {
-  position: absolute;
-  width: 100%;
-  top: 124px;
-  bottom: 0px;
-  overflow: auto;
+
+audio, canvas, video {
+    display: inline-block;
 }
-.leaflet-control-layers label {
-  font-weight: normal;
-  margin-bottom: 0px;
+
+/* ---------------------------------------------------------------------
+ Form Reset Styles
+------------------------------------------------------------------------ */
+/*input[type=search]::-webkit-search-cancel-button,*/
+/*input[type=search]::-webkit-search-decoration,*/
+/*input[type=search]::-webkit-search-results-button,*/
+/*input[type=search]::-webkit-search-results-decoration {*/
+    /*-webkit-appearance: none;*/
+/*}*/
+
+input[type=search] {
+    -webkit-appearance: none;
 }
-.leaflet-control-layers-list input[type="radio"], input[type="checkbox"] {
-  margin: 2px;
+
+textarea {
+    overflow: auto;
+    vertical-align: top;
+    resize: vertical;
 }
-.table {
-  margin-bottom: 0px;
+
+::-moz-focus-inner {
+    border: 0;
+    padding: 0;
 }
-.navbar .navbar-brand {
-  font-weight: bold;
-  font-size: 25px;
-  color: #FFFFFF;
+
+/* ---------------------------------------------------------------------
+ Classes that came with the 960 grid demo
+------------------------------------------------------------------------ */
+body {
+    background: #e6e5ef;
+    color: #463838;;
+    font-size: 11px;
+    height: auto;
+    padding-bottom: 20px;
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
 }
-.navbar-collapse.in {
-  overflow-y: hidden;
+
+.container_12 {
+    background-color: #e6e5ef;
+    background-repeat: repeat-y;
+    margin-bottom: 20px;
+    /*background-image: url(../images/12_col.gif);*/
 }
-.navbar-header .navbar-icon-container {
-  margin-right: 15px;
+
+/* ---------------------------------------------------------------------
+ Throw-away Styles
+------------------------------------------------------------------------ */
+.pageHeading {
+    font-family: Georgia, serif;
+    font-weight: normal;
+    font-size: 30px;
+    margin: 20px 0;
+    text-align: center;
+    color: #e6e5ef;
 }
-.navbar-header .navbar-icon {
-  line-height: 50px;
-  height: 50px;
+
+/* ---------------------------------------------------------------------
+ Base Styles
+------------------------------------------------------------------------ */
+.wrapper {
+    overflow: hidden;
 }
-.navbar-header a.navbar-icon {
-  margin-left: 25px;
+
+h4 {
+    font-size: 13px;
+    color: #463838;
 }
-.typeahead {
-  background-color: #FFFFFF;
+
+.containerRow {
+    width: 100%;
+    margin: 0 0 5px 0;
+    overflow: hidden;
 }
-.tt-dropdown-menu {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 4px 4px 4px 4px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  margin-top: 4px;
-  padding: 4px 0;
-  width: 100%;
-  max-height: 300px;
-  overflow: auto;
+
+.statusContainer {
+    display: table;
+    width: 100%;
 }
-.tt-suggestion {
-  font-size: 14px;
-  line-height: 20px;
-  padding: 3px 10px;
+
+.restrictions li {
+    margin-bottom: 5px;
 }
-.tt-suggestion.tt-cursor {
-  background-color: #0097CF;
-  color: #FFFFFF;
-  cursor: pointer;
+
+/* ---------------------------------------------------------------------
+ Media
+------------------------------------------------------------------------ */
+
+.media {
+    overflow: hidden;
 }
-.tt-suggestion p {
-  margin: 0;
+
+.media > * {
+    display: block;
 }
-.tt-suggestion + .tt-suggestion {
-  border-top: 1px solid #ccc;
+
+.media-hd {
+    margin-right: 2px;
+    float: left;
 }
-.typeahead-header {
-  margin: 0 5px 5px 5px;
-  padding: 3px 0;
-  border-bottom: 2px solid #333;
+
+.media-bd {
+    overflow: hidden;
 }
-.has-feedback .form-control-feedback {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: block;
-  width: 34px;
-  height: 34px;
-  line-height: 34px;
-  text-align: center;
+
+/* ---------------------------------------------------------------------
+ Text Styles
+------------------------------------------------------------------------ */
+
+.sectionTitle {
+    line-height: 1.1;
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #463838;
+    margin-top: 2px;
 }
-@media (max-width: 992px) {
-  .navbar .navbar-brand {
-    font-size: 18px;
-  }
+
+.statusIcon {
+    display: table-cell;
+    height: 18px;
+    width: 18px;
+    margin-right: 3px;
 }
-@media (max-width: 767px){
-  #sidebar {
+
+.link {
+    cursor: pointer;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.heading {
+    color: #463838;
+    font-size: 13px;
+
+}
+
+.statusText {
+    display: table-cell;
+    color: #ce4e27;
+    vertical-align: bottom;
+    text-align: right;
+    margin: 2px 0 0 0;
+}
+
+/* ---------------------------------------------------------------------
+ Ratio Text
+------------------------------------------------------------------------ */
+
+.ratio-text {
+    text-align: right;
+    margin: 4px -2px 0 -5px;
+    font-size: 11px;
+}
+
+.ratio-text_numerator {
+    color: #acbb39;
+    margin: 0px -2px 0px 0px;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.ratio-text_denominator {
+    color: #463838;
+    margin: 0px 0px 0px -2px;
+    font-size: 11px;
+}
+
+.ratio-text_divisor {
+    font-size: 11px;
+}
+
+.ratio-text_unit {
+    color: #ebebeb;
+    margin: 0 0px 0 -4px;
+    font-size: 10px;
+}
+
+.box {
+    margin: 0 0 5px 0;
+    background: #dbdbda;
+    padding: 1px 4px;
+    border-bottom-color: #ebebeb;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+
+
+.box.box_small {
+    margin: 0 0 1px 0;
+}
+
+.box-hd {
+    margin-bottom: 1px;
+}
+
+.box-hd_minor {
+    color: #aaa;
+}
+
+.box-hd_minor + .box-hd_minor {
+    content: ", ";
+}
+
+.box-bd {
+
+}
+
+/* ---------------------------------------------------------------------
+ Grid
+------------------------------------------------------------------------ */
+
+.grid {
+    overflow: hidden;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.grid:before,
+.grid:after {
+    content: " ";
+    display: table;
+}
+
+.grid:after {
+    clear: both;
+}
+
+.grid-row { }
+
+.grid-row:before,
+.grid-row:after {
+    display: table;
+    content: " ";
+}
+
+.grid-row:after {
+    clear: both;
+}
+
+.grid-row-col {
+    float: left;
+    /*min-height: 1px;*/
+}
+
+.grid-row-col + .grid-row-col {
+    margin-left: 2.127663%;
+}
+
+/*change these to static widths. concentrate on markup for now*/
+.grid-row-col_1of12 { width: 6.382989%; }
+.grid-row-col_2of12 { width: 14.893641%; }
+.grid-row-col_3of12 { width: 23.404293%; }
+.grid-row-col_4of12 { width: 31.914945%; }
+.grid-row-col_5of12 { width: 40.425597%; }
+.grid-row-col_6of12 { width: 48.936249%; }
+.grid-row-col_7of12 { width: 57.446901%; }
+.grid-row-col_8of12 { width: 65.957553%; }
+.grid-row-col_9of12 { width: 74.468205%; }
+.grid-row-col_10of12 { width: 82.978857%; }
+.grid-row-col_11of12 { width: 91.489509%; }
+.grid-row-col_12of12 { width: 100%; }
+
+
+/* ---------------------------------------------------------------------
+ LAYOUT
+------------------------------------------------------------------------ */
+.site {
+
+}
+
+.site-hd {
+
+}
+
+.site-bd {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.site-ft {
+
+}
+
+.navigation {
+
+}
+
+.sidebar {
+
+}
+
+.container {
+
+}
+
+/* ---------------------------------------------------------------------
+ map
+------------------------------------------------------------------------ */
+
+.map {
+    display: -webkit-flex;
+    flex-direction: row;
+    align-items: stretch;
+    height: 100%;
+}
+
+.map-nav {
+    flex: 0 0 320px;
+    /*height: 100%;*/
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+
+}
+
+.map-body {
+    background-color: #ebebeb;
+    flex: 0 0 100%;
+}
+
+/* ---------------------------------------------------------------------
+ list
+------------------------------------------------------------------------ */
+
+
+
+/* ---------------------------------------------------------------------
+ Species
+------------------------------------------------------------------------ */
+
+.species .stocking.stocked{
+    stroke-width: 1.5px;
+}
+
+.species .brook {
+    fill: #acbb39;
+    color: #acbb39;
+    stroke: #acbb39;
+}
+
+.species .brown {
+    fill: #fccc14;
+    stroke: #fccc14;
+    color: #fccc14;
+}
+
+.species .rainbow {
+    fill: #ce4e27;
+    stroke: #ce4e27;
+    color: #ce4e27;
+}
+
+.species .stocking.stocked {
+    stroke: #463838;
+}
+
+.species .stocking.none {
     display: none;
-  }
-  .url-break {
-    word-break: break-all;
-    word-break: break-word;
-    -webkit-hyphens: auto;
-      hyphens: auto;
-  }
-  .dropdown-menu a i{
-    color: #FFFFFF;
-  }
 }
-/* Print Handling */
-@media print {
-  .navbar {
-    display: none !important;
-  }
-  .leaflet-control-container {
-    display: none !important;
-  }
+
+.species .stocking {
+    fill-opacity: 0.0;
+}
+
+.species .population.none {
+    fill: #ebebeb;
+    stroke: #ebebeb;
+    color: #ebebeb;
+}
+
+.axis text {
+    display: none;
+}
+
+.axis path.domain {
+    fill: #4e7f84;
+    /*stroke: #463838;*/
+    /*stroke: blue;*/
+    /*stroke-width: 5px;*/
+    /*shape-rendering: crispEdges;*/
+    stroke-linecap: round;
+}
+
+.axis line {
+    fill: none;
+    stroke: #463838;
+    /*shape-rendering: crispEdges;*/
+}
+
+.stream-line_stream {
+    fill: #4e7f84;
+}
+
+.stream-line_restriction {
+    fill: #fccc14;
+}
+
+.stream-line_restriction_secondary {
+    fill: #ce4e27;
+}
+
+
+.stream-line_public-land {
+    fill: #acbb39;
+}
+
+.legend {
+    width: 7px;
+    height: 5px;
+    display: inline-block;
+    margin: 3px 4px 0 0;
+}
+
+.legend.stream-line_restriction {
+    background-color: #fccc14;
+}
+
+.legend.stream-line_restriction_secondary {
+    background-color: #ce4e27;
+}
+
+.stream-ratio_stream {
+    fill: #4e7f84;
+}
+
+.stream-ratio_public-land {
+    fill: #acbb39;
+}
+
+.stream-ratio_background {
+    fill: #ebebeb;
+}
+
+.tick {
+    fill: #463838;
 }
