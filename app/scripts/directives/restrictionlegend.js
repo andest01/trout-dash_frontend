@@ -9,10 +9,10 @@
 angular.module('troutDashApp')
   .directive('restrictionLegend', function () {
     return {
-      template: '<div></div>',
+      templateUrl: '/views/restrictionlegendtemplate.html',
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
-        element.text('this is the restrictionLegend directive');
+      		
       }
     };
   });
