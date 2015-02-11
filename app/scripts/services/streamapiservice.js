@@ -17,7 +17,9 @@ angular.module('troutDashApp')
       getStreams: function() {
         return $http.get('/data/trout-dash-minnesota.json')
           .then(function(response) {
-            return response.data;
+            return response.data.filter(function(stream) {
+              return stream.Lakes.Sections.length > 0;
+            });
           });
       }
     };

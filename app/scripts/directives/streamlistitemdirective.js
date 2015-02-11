@@ -12,9 +12,7 @@ angular.module('troutDashApp')
       templateUrl: '/views/streamlistitemtemplate.html',
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
-      	if (scope.stream.Restrictions.length > 0) {
-      		console.log(scope.stream);
-      	}
+      	
       }
     };
   });

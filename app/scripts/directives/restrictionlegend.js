@@ -12,7 +12,7 @@ angular.module('troutDashApp')
       templateUrl: '/views/restrictionlegendtemplate.html',
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
-      		
+      	
       }
     };
   });
