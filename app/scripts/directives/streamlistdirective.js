@@ -6,13 +6,36 @@
  * # StreamListDirective
  */
 angular.module('troutDashApp')
-  .directive('youAreADick', function () {
+  .directive('streamList', function (StreamApiService) {
     return {
-    	template: '<div></div>',
+    	templateUrl: '/views/streamlisttemplate.html',
       	restrict: 'A',
       	link: function postLink(scope, element, attrs) {
-	        console.log('hello');
-	        element.text('this is the StreamListDirective directive'); 
+      		scope.stage = {
+      			isLoaded: false,
+      			streams: null,
+      			selectedStream: null
+      		};
+	        StreamApiService.getStreams()
+				.then(function(streams) {
+					scope.stage.streams = streams;
+				});
+
+			scope.$watch('stage.streams', function(newStreams, oldStreams) {
+				if (newStreams == null) {
+					return;
+				}
+
+
+			});
+
+			scope.$watch('stage.selectedStream', function(newSelectedStream, oldSelectedStream) {
+				if (newSelectedStream == null) {
+					return;
+				}
+
+
+			});
       	}
 	};
 });

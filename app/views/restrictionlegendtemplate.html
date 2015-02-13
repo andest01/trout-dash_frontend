@@ -1,0 +1,12 @@
+<ul class="restrictions" data-ng-repeat="restriction in stream.Restrictions">
+    <li>
+        <div class="media">
+            <div class="media-hd legend" 
+            	data-ng-class="{'stream-line_restriction': $index === 0, 'stream-line_restriction_secondary': $index === 1}">
+
+            </div>
+            <span class="media-bd heading">{{restriction.FullText}}</span>
+
+        </div>
+    </li>
+</ul>

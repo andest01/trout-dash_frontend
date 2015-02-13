@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc directive
- * @name troutDashApp.directive:StreamListItemDirective
+ * @name troutDashApp.directive:restrictionLegend
  * @description
- * # StreamListItemDirective
+ * # restrictionLegend
  */
 angular.module('troutDashApp')
-  .directive('streamListItemDirective', function () {
+  .directive('restrictionLegend', function () {
     return {
-      templateUrl: '/views/streamlistitemtemplate.html',
+      templateUrl: '/views/restrictionlegendtemplate.html',
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
       	
