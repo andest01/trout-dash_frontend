@@ -464,7 +464,7 @@ h4 {
 }
 
 .axis path.domain {
-    fill: #4e7f84;
+    fill: #97CAFF;
     /*stroke: #463838;*/
     /*stroke: blue;*/
     /*stroke-width: 5px;*/
@@ -478,8 +478,13 @@ h4 {
     /*shape-rendering: crispEdges;*/
 }
 
-.stream-line_stream {
+/*4e7f84*/
+.stream-line_route {
     fill: #4e7f84;
+}
+
+.stream-line_stream {
+    fill: #97CAFF;
 }
 
 .stream-line_restriction {
@@ -511,7 +516,7 @@ h4 {
 }
 
 .stream-ratio_stream {
-    fill: #4e7f84;
+    fill: #97CAFF;
 }
 
 .stream-ratio_public-land {

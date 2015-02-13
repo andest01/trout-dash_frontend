@@ -19,6 +19,7 @@ angular.module('troutDashApp')
 
 			var inverseLength = 1/length;
 
+            // console.log(scope.stream);
 			scope.stage = {
 				width: 292
 			};
@@ -95,23 +96,45 @@ angular.module('troutDashApp')
             
 
 
-            // RESTRICTIONS
-	        scope.stream.Restrictions.forEach(function(restriction, index) {
-	        	console.log('length: ', length);
-	        	console.log('restriction: ', restriction);
-	        	console.log('name: ', scope.stream.Name);
-	        	console.log('index', index);
 
-	        	var restrictionModels = restriction.Sections.map(function(segment) {
-					var linearReferenceViewModel = new LinearReferenceViewModel(segment, inverseLength);
-					segment.segment = linearReferenceViewModel;
-					return segment;
-				});
+
+
+            // TROUT STREAM SECTIONS
+            scope.publicSegments = scope.stream.TroutStreams.Sections.map(function(segment) {
+                return new LinearReferenceViewModel(segment, inverseLength);
+            });
+
+            // Stage
+            scope.streamLine.troutStreamSections = scope.streamLine.append('g')
+                .attr('class', 'stream-line_route');
+
+            // Execute
+            scope.streamLine.append('g')
+                    .attr('class', 'stream-line_route')
+                    .selectAll('g').data(scope.publicSegments).enter()
+                    .append('g')
+                    .append('rect')
+                    .attr('x', function(d) { 
+                        return d.xOffset * scope.stage.width;})
+                    .attr('y', 3)
+                    .attr('width', function(d) { 
+                        return d.width * scope.stage.width;})
+                    .attr('height', 5)
+                    .attr('class', 'stream-line_route');
+
+                        // RESTRICTIONS
+            scope.stream.Restrictions.forEach(function(restriction, index) {
+
+                var restrictionModels = restriction.Sections.map(function(segment) {
+                    var linearReferenceViewModel = new LinearReferenceViewModel(segment, inverseLength);
+                    segment.segment = linearReferenceViewModel;
+                    return segment;
+                });
 
                 scope.streamLine.append('g')
                     .attr('class', index === 0 
-                    		? 'stream-line_restriction' 
-                    		: 'stream-line_restriction_secondary')
+                            ? 'stream-line_restriction' 
+                            : 'stream-line_restriction_secondary')
                     .selectAll('g').data(restrictionModels).enter()
                     .append('g')
                     // .selectAll('rect').data(function(d) {
@@ -119,13 +142,13 @@ angular.module('troutDashApp')
                     // }).enter()
                     .append('rect')
                     .attr('x', function(d) { 
-                    	return d.segment.xOffset * scope.stage.width;})
+                        return d.segment.xOffset * scope.stage.width;})
                     .attr('y', 3)
                     .attr('width', function(d) { 
-                    	return d.segment.width * scope.stage.width;})
+                        return d.segment.width * scope.stage.width;})
                     .attr('height', 5)
                     .attr('class', 'restriction');
-	        });
+            });
 
             
             var createTickMarks = function(LengthMiles) {
@@ -171,6 +194,15 @@ angular.module('troutDashApp')
                 .attr('width', function(d) {return d.width;})
                 .attr('height', function(d) { return d.height;})
                 .attr('class', 'tick');
+
+
+            scope.getCounties = function() {
+                if (!scope.stream.Counties) {
+                    return null;
+                }
+
+                return scope.stream.Counties.join(',');
+            };
 		}
 	};
 });

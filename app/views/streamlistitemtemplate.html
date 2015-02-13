@@ -3,8 +3,8 @@
         <div class="containerHeader grid-row box-hd">
             <div class="grid-row-col grid-row-col_9of12">
                 <h2>
-                    <span data-ng-click="selectStream(stream)"  class="link js-stream-link sectionTitle" >{{::stream.Name}}</span>
-                    <span class="box-hd_minor">{{::stream.countiesText}}</span>
+                    <a data-ng-click="selectStream(stream)" href="https://www.google.com/maps/@{{::stream.CentroidLongitude}},{{::stream.CentroidLatitude}},14z"  class="link js-stream-link sectionTitle" >{{::stream.Name}}</a>
+                    <div class="box-hd_minor">{{::getCounties()}}</div>
 
                 </h2>
             </div>
