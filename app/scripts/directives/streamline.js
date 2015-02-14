@@ -203,6 +203,18 @@ angular.module('troutDashApp')
 
                 return scope.stream.Counties.join(',');
             };
+
+            scope.getAlternativeNames = function() {
+                if (!scope.stream.LocalNames) {
+                    return null;
+                }
+
+                if (scope.stream.LocalNames.length === 0) {
+                    return '';
+                }
+
+                return 'aka ' + scope.stream.LocalNames.join(',');
+            };
 		}
 	};
 });
