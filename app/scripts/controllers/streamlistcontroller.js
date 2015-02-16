@@ -8,6 +8,6 @@
  * Controller of the troutDashApp
  */
 angular.module('troutDashApp')
-  .controller('StreamlistcontrollerCtrl', function ($scope, StreamApiService) {
-  	
-  });
+	.controller('StreamlistcontrollerCtrl', function ($scope, StreamApiService) {
+		$scope.isSmallView = true;
+	});

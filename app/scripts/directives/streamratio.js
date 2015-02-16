@@ -7,12 +7,13 @@
  * # streamRatio
  */
 angular.module('troutDashApp')
-  .directive('streamRatio', function () {
+  .directive('streamRatio', function (StreamRatioViewModel) {
     return {
-      template: '<div></div>',
-      restrict: 'E',
+      templateUrl: '/views/streamratiotemplate.html',
+      restrict: 'A',
       link: function postLink(scope, element, attrs) {
-        element.text('this is the streamRatio directive');
+        var model = new StreamRatioViewModel(scope.stream.TroutStreamsLength, scope.stream.PalsLength);
+        scope.streamRatio = model;
       }
     };
   });

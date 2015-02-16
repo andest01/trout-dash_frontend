@@ -114,7 +114,7 @@ textarea {
  Classes that came with the 960 grid demo
 ------------------------------------------------------------------------ */
 body {
-    background: #e6e5ef;
+    background: #dbdbda;
     color: #463838;;
     font-size: 11px;
     height: auto;
@@ -211,6 +211,7 @@ h4 {
 
 .link {
     cursor: pointer;
+    text-decoration: none;
 }
 
 .link:hover {
@@ -268,7 +269,7 @@ h4 {
     margin: 0 0 5px 0;
     background: #dbdbda;
     padding: 1px 4px;
-    border-bottom-color: #ebebeb;
+    border-bottom-color: #dbdbda;
     border-bottom-width: 2px;
     border-bottom-style: solid;
 }
@@ -412,7 +413,28 @@ h4 {
 /* ---------------------------------------------------------------------
  list
 ------------------------------------------------------------------------ */
+.imageOverlay-icn {
+  display: block; }
 
+.alert {
+    fill: #fccc14;
+    stroke: #fccc14;
+    color: #fccc14;
+}
+
+.imageOverlay-txt {
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+}
+
+.alert-text {
+    color: #463838;
+    stroke-width: 0;
+    fill: #463838;
+}
 
 
 /* ---------------------------------------------------------------------
