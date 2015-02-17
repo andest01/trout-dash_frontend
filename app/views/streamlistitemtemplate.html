@@ -1,15 +1,22 @@
 <div class="box" data-stream-id="{{::stream.Id}}">
     <div class="grid-row">
         <div class="containerHeader grid-row box-hd">
-            <div class="grid-row-col grid-row-col_9of12">
-                <h2>
-                    <a data-ng-click="selectStream(stream)" href="https://www.google.com/maps/@{{::stream.CentroidLongitude}},{{::stream.CentroidLatitude}},14z"  class="link js-stream-link sectionTitle" >{{::stream.Name}}</a>
-                    <div class="box-hd_minor">{{getAlternativeNames()}}</div>
-                    <div data-ng-if="isSmall == false" class="box-hd_minor">{{getCounties()}} Co.</div>
-
-                </h2>
-            </div>
             <div class="grid-row-col grid-row-col_3of12">
+                <div class="grid-row-col grid-row-col_4of12">
+                    <!-- data-ng-show="isAlertSymbolDisplayed()" -->
+                    <span  data-ng-class="{'alert-none': !isAlertSymbolDisplayed()}">
+                        <div class="imageOverlay-icn"> 
+                            <svg class="alert" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="16" viewBox="0 0 32 32">
+                                <path d="M31.858 27.675c-3.196-5.42-11.116-18.857-14.395-24.42-0.987-1.672-1.947-1.641-2.859-0.096-3.223 5.464-11.137 18.878-14.395 24.402-0.004 0.006-0.87 2.439 0.954 2.439h29.561c1.969 0 1.048-2.471 1.134-2.325z"></path>
+                                <text class="alert-text" x="12" y="25" 
+                                    font-family="Futura" 
+                                    font-size="24">!</text>
+                            </svg>
+                        </div>
+                    
+                    </span>
+                </div>
+
                 <div class="grid-row-col grid-row-col_4of12">
                     <div data-species-summary >
 
@@ -22,23 +29,19 @@
                     </div>
                 </div>
 
-                <div class="grid-row-col grid-row-col_4of12">
-                    <span data-ng-show="isAlertSymbolDisplayed()" >
-                        <div class="imageOverlay-icn"> 
-                        <svg class="alert" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="16" viewBox="0 0 32 32">
-                            <path d="M31.858 27.675c-3.196-5.42-11.116-18.857-14.395-24.42-0.987-1.672-1.947-1.641-2.859-0.096-3.223 5.464-11.137 18.878-14.395 24.402-0.004 0.006-0.87 2.439 0.954 2.439h29.561c1.969 0 1.048-2.471 1.134-2.325z"></path>
-                            <text class="alert-text" x="12" y="25" 
-                                font-family="Futura" 
-                                font-size="24">!</text>
-                        </svg>
-                        </div>
-                    
-                    </span>
-                </div>
+                
 
                 
-                </div>
             </div>
+            <div class="grid-row-col grid-row-col_9of12">
+                <h2>
+                    <a data-ng-click="selectStream(stream)" href="https://www.google.com/maps/@{{::stream.CentroidLongitude}},{{::stream.CentroidLatitude}},14z"  class="link js-stream-link sectionTitle" >{{::stream.Name}}</a>
+                    <div class="box-hd_minor">{{getAlternativeNames()}}</div>
+                    <div data-ng-if="isSmall == false" class="box-hd_minor">{{getCounties()}} Co.</div>
+
+                </h2>
+            </div>
+            
         </div>  
 
         <div data-ng-show="isSmall === false" >

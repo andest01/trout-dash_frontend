@@ -18,6 +18,20 @@ angular.module('troutDashApp')
       		};
 	        StreamApiService.getStreams()
 				.then(function(streams) {
+                    streams.sort(function(a, b) {
+                        var nameA = a.Name.toLowerCase();
+                        var nameB = b.Name.toLowerCase();
+
+                        if (nameA < nameB) {
+                            return -1;
+                        }
+
+                        if (nameA > nameB) {
+                            return 1;
+                        }
+
+                        return 0;
+                    });
 					scope.stage.streams = streams;
 				});
 
