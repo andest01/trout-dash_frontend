@@ -43,7 +43,10 @@ angular.module('troutDashApp')
             };
 
             this.waterRadius = computeRadiusFromLength(this.totalLength);
-            this.publicLandRadius = computeRadiusFromLength(this.publicLandLength);
+            // LIE about the width.
+           	// use the diameter of the water ratio to determine how large
+           	var publicLandLengthTOWaterLengthRatio = this.publicLandLength / this.totalLength;
+            this.publicLandRadius = this.waterRadius * publicLandLengthTOWaterLengthRatio;
         };
 
         return StreamRatioViewModel;

@@ -12,7 +12,7 @@ angular.module('troutDashApp')
       templateUrl: '/views/streamlistitemtemplate.html',
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
-      	scope.isSmall = true;
+      	scope.isSmall = false;
         console.log(scope.stream);
       	scope.isAlertSymbolDisplayed = function() {
       		if (scope.isSmall === false) {
@@ -22,7 +22,7 @@ angular.module('troutDashApp')
       		var isRestrictions = scope.stream.Restrictions.length > 0;
       		var isMessage = scope.stream.AlertMessage != null && scope.stream.AlertMessage.length > 0;
 
-      		if (isRestrictions) {
+      		if (isRestrictions && isMessage) {
       			return true;
       		}
       	};
@@ -30,6 +30,10 @@ angular.module('troutDashApp')
       	scope.getAlertMessage = function() {
       		return scope.stream.AlertMessage;
       	};
+
+        scope.expand = function() {
+          scope.isSmall = !scope.isSmall;
+        }
       }
     };
   });
