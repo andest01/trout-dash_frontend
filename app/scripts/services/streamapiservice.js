@@ -22,6 +22,13 @@ angular.module('troutDashApp')
             // });
             return response.data;
           });
+      },
+
+      getRegions: function() {
+        return $http.get('/data/regionDetails.json')
+          .then(function(response) {
+            return response.data;
+          });
       }
     };
 

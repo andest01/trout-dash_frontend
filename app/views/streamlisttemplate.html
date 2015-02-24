@@ -1,5 +1,12 @@
 <div>
 	<span></span>
-	<div ng-class-odd="'box'" ng-class-even="'box box-secondary'" data-ng-repeat="stream in stage.streams" data-stream-list-item-directive>
+	<div data-ng-repeat="region in stage.regions">
+		<div data-ng-repeat="county in region.Counties">
+			<span class="sectionTitle" style="background-color: red">{{::region.RegionName}} ---> {{::county.CountyName}}</span>
+			<div ng-class-odd="'box'" ng-class-even="'box box-secondary'" data-ng-repeat="stream in county.Streams" data-stream-list-item-directive>
+
+			</div>
+		</div>
 	</div>
+	
 </div>

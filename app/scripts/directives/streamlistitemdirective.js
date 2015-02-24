@@ -12,7 +12,7 @@ angular.module('troutDashApp')
       templateUrl: '/views/streamlistitemtemplate.html',
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
-      	scope.isSmall = false;
+      	scope.isSmall = true;
         console.log(scope.stream);
       	scope.isAlertSymbolDisplayed = function() {
       		if (scope.isSmall === false) {

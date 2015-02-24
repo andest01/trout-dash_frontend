@@ -16,24 +16,25 @@ angular.module('troutDashApp')
       			streams: null,
       			selectedStream: null
       		};
-	        StreamApiService.getStreams()
-				.then(function(streams) {
-                    streams.sort(function(a, b) {
-                        var nameA = a.Name.toLowerCase();
-                        var nameB = b.Name.toLowerCase();
 
-                        if (nameA < nameB) {
-                            return -1;
-                        }
+	        StreamApiService.getRegions()
+    				.then(function(regions) {
+                        // regions.sort(function(a, b) {
+                        //     var nameA = a.RegionName.toLowerCase();
+                        //     var nameB = b.RegionName.toLowerCase();
 
-                        if (nameA > nameB) {
-                            return 1;
-                        }
+                        //     if (nameA < nameB) {
+                        //         return -1;
+                        //     }
 
-                        return 0;
-                    });
-					scope.stage.streams = streams;
-				});
+                        //     if (nameA > nameB) {
+                        //         return 1;
+                        //     }
+
+                        //     return 0;
+                        // });
+    					scope.stage.regions = regions;
+    				});
 
 			scope.$watch('stage.streams', function(newStreams, oldStreams) {
 				if (newStreams == null) {
