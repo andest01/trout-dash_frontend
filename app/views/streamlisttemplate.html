@@ -1,8 +1,8 @@
 <div>
 	<span></span>
 	<div data-ng-repeat="region in stage.regions">
-		<div data-ng-repeat="county in region.Counties">
-			<span class="sectionTitle" style="background-color: red">{{::region.RegionName}} ---> {{::county.CountyName}}</span>
+		<div  data-ng-repeat="county in region.Counties" id="county_{{::county.CountyId}}">
+			<div fsm-sticky-header scroll-body="'#county_{{::county.CountyId}}'" scroll-stop="0" class="sectionTitle" style="background-color: red">{{::region.RegionName}} ---> {{::county.CountyName}}</div>
 			<div ng-class-odd="'box'" ng-class-even="'box box-secondary'" data-ng-repeat="stream in county.Streams" data-stream-list-item-directive>
 
 			</div>
