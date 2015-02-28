@@ -13,7 +13,6 @@ angular.module('troutDashApp')
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
       	scope.isSmall = true;
-        console.log(scope.stream);
       	scope.isAlertSymbolDisplayed = function() {
       		if (scope.isSmall === false) {
       			return false;
