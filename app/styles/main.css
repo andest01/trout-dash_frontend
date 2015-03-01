@@ -574,3 +574,26 @@ left: 0;
 .tray {
 
 }
+
+.miniMap {
+    width: 40px;
+    height: 40px;
+    float: right;
+    display: block;
+    background-color: #acbb39;
+    overflow: hidden;
+}
+
+.something {
+    width: 40px;
+    height: 40px;
+    /* padding-right: 20px; */
+    /* margin-top: 12px; */
+    /* margin-right: 4px; */
+    background-color: #acbb39;
+    float: right;
+    z-index: 40100;
+    position: fixed;
+    right: 9px;
+    top: 4px;
+}
