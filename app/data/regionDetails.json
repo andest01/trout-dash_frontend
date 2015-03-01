@@ -15990,7 +15990,7 @@
     ]
   },
   {
-    "RegionName": "NorthShore",
+    "RegionName": "North Shore",
     "RegionId": 25,
     "Counties": [
       {
@@ -47349,7 +47349,7 @@
     ]
   },
   {
-    "RegionName": "SoutheasternDriftless",
+    "RegionName": "Driftless",
     "RegionId": 27,
     "Counties": [
       {

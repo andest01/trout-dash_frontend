@@ -36,7 +36,7 @@ angular.module('troutDashApp')
     					scope.stage.regions = regions;
     				});
 
-      scope.getScrollBodyId = function(county) {
+      scope.getCountyScrollBodyId = function(county) {
           return '#' + scope.getCountyId(county);
           // return '';
       };
@@ -45,6 +45,15 @@ angular.module('troutDashApp')
         // console.log(county);
         return 'county_' + county.CountyId;
       // return '';
+      };
+
+      scope.getRegionScrollBodyId = function(region) {
+          return '#' + scope.getRegionId(region);
+          // return '';
+      };
+
+      scope.getRegionId = function(region) {
+        return 'region_' + region.RegionId;
       };
 
       scope.$watch('stage.streams', function(newStreams, oldStreams) {
