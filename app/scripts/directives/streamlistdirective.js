@@ -19,20 +19,7 @@ angular.module('troutDashApp')
 
 	        StreamApiService.getRegions()
     				.then(function(regions) {
-                        // regions.sort(function(a, b) {
-                        //     var nameA = a.RegionName.toLowerCase();
-                        //     var nameB = b.RegionName.toLowerCase();
 
-                        //     if (nameA < nameB) {
-                        //         return -1;
-                        //     }
-
-                        //     if (nameA > nameB) {
-                        //         return 1;
-                        //     }
-
-                        //     return 0;
-                        // });
     					scope.stage.regions = regions;
     				});
 
