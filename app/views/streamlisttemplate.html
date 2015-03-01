@@ -1,8 +1,15 @@
-<div>
+<div data-ng-cloak>
 	<span></span>
-	<div data-ng-repeat="region in stage.regions">
-		<div  data-ng-repeat="county in region.Counties" id="county_{{::county.CountyId}}">
-			<div fsm-sticky-header scroll-body="'#county_{{::county.CountyId}}'" scroll-stop="0" class="sectionTitle" style="background-color: red">{{::region.RegionName}} ---> {{::county.CountyName}}</div>
+	<div data-ng-repeat="region in ::stage.regions" >
+		<div>{{$even}}</div>
+		<div  data-ng-repeat="county in ::region.Counties" id="{{::getCountyId(county)}}">
+			<div fsm-sticky-header 
+				scroll-body="getScrollBodyId(county)" 
+				scroll-stop="-2" 
+				scroll-object="county"
+				class="sectionTitle region-header" >{{::county.CountyName}} Co. 
+					<span class="box-hd_minor">({{::region.RegionName}})</span>
+			</div>
 			<div ng-class-odd="'box'" ng-class-even="'box box-secondary'" data-ng-repeat="stream in county.Streams" data-stream-list-item-directive>
 
 			</div>

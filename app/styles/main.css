@@ -201,6 +201,23 @@ h4 {
     margin-top: 2px;
 }
 
+.region-header {
+    padding: 5px 8px;
+    background-color: #fccc14;
+}
+
+.region-header .secondary {
+    background-color: #acbb39;
+}
+
+.region-header .tertiary {
+    
+}
+
+.region-header .quaternary {
+    
+}
+
 .statusIcon {
     display: table-cell;
     height: 18px;

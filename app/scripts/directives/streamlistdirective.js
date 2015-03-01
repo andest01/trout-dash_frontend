@@ -36,13 +36,22 @@ angular.module('troutDashApp')
     					scope.stage.regions = regions;
     				});
 
-			scope.$watch('stage.streams', function(newStreams, oldStreams) {
-				if (newStreams == null) {
-					return;
-				}
+      scope.getScrollBodyId = function(county) {
+          return '#' + scope.getCountyId(county);
+          // return '';
+      };
 
+      scope.getCountyId = function(county) {
+        // console.log(county);
+        return 'county_' + county.CountyId;
+      // return '';
+      };
 
-			});
+      scope.$watch('stage.streams', function(newStreams, oldStreams) {
+        if (newStreams == null) {
+          return;
+        }
+      });
 
 			scope.$watch('stage.selectedStream', function(newSelectedStream, oldSelectedStream) {
 				if (newSelectedStream == null) {

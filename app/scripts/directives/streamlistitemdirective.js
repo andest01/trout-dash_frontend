@@ -26,6 +26,8 @@ angular.module('troutDashApp')
       		}
       	};
 
+        
+
       	scope.getAlertMessage = function() {
       		return scope.stream.AlertMessage;
       	};
