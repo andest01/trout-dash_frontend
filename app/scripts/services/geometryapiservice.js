@@ -8,16 +8,22 @@
  * Factory in the troutDashApp.
  */
 angular.module('troutDashApp')
-  .factory('GeometryApiService', function () {
-    // Service logic
-    // ...
+  .factory('GeometryApiService', function ($rootScope, $cacheFactory, $http, $q) {
+    function GeometryApiService() {
 
-    var meaningOfLife = 42;
+    }
 
-    // Public API here
-    return {
-      someMethod: function () {
-        return meaningOfLife;
+    GeometryApiService.prototype = {
+      getRegionGeometries: function() {
+        return $http.get('/data/shapes.json')
+          .then(function(response) {
+            // return response.data.filter(function(stream) {
+            //   return stream.Lakes.Sections.length > 0;
+            // });
+            return response.data;
+          });
       }
     };
+
+    return new GeometryApiService();
   });
