@@ -14,13 +14,20 @@ angular.module('troutDashApp')
     return {
       templateUrl: './views/minimaptemplate.html',
       restrict: 'A',
+      scope: {
+
+      },
       link: function postLink(scope, element, attrs) {
-      	scope.stage = {
+      	scope.minimapState = {
         	isLoading: true,
         	regionGeometries: null,
         	selectedRegionId: null,
-        	selectedCountyId: null
+        	selectedCountyId: null,
+            width: 40,
+            height: 40
         };
+
+        scope.active = d3.select(null);
 
         $rootScope.$on('header-clone', function(event, item) {
         	if (item == null) {
@@ -28,28 +35,38 @@ angular.module('troutDashApp')
         	}
 
         	if (item.RegionId != null) {
-        		scope.stage.selectedRegionId = item.RegionId;
-        		console.log('new region', scope.stage.selectedRegionId);
+        		scope.minimapState.selectedRegionId = item.RegionId;
+        		console.log('new region', scope.minimapState.selectedRegionId);
         	}
 
         	if (item.CountyId != null) {
-        		scope.stage.selectedCountyId = item.CountyId;
-        		console.log('new county', scope.stage.selectedCountyId);
+        		scope.minimapState.selectedCountyId = item.CountyId;
+                scope.$apply();
+        		console.log('new county', scope.minimapState.selectedCountyId);
         	}
         });
 
         var unwatchRegionId = scope.$watch(function() {
-        		return scope.stage.selectedRegionId;
+        		return scope.minimapState.selectedRegionId;
 			}, function(newRegion, oldRegion) {
 				if (newRegion == null) {
 					return;
 				}
 
 				console.log('new region!', newRegion);
+                var soughtRegion = scope.currentRegions.features.filter(function(f) {
+                    console.log(f);
+                    return f.properties.gid === newRegion;
+                });
+
+                if (soughtRegion.length > 0 && newRegion !== oldRegion) {
+                    zoomToGeometry(soughtRegion[0]);
+                }
+
 			});
 
         var unwatchCountyId = scope.$watch(function() {
-        		return scope.stage.selectedCountyId;
+        		return scope.minimapState.selectedCountyId;
 			}, function(newCounty, oldCounty) {
 				if (newCounty == null) {
 					return;
@@ -59,7 +76,7 @@ angular.module('troutDashApp')
 			});
 
         var unwatchGeometries = scope.$watch(function() {
-        		return scope.stage.regionGeometries;
+        		return scope.minimapState.regionGeometries;
 			}, function(newGeometries, oldGeometries) {
 				if (newGeometries == null) {
 					return;
@@ -85,20 +102,141 @@ angular.module('troutDashApp')
         var gettingGeometries = GeometryApiService.getRegionGeometries();
         var gettingRegionData = StreamApiService.getRegions();
 
+        // This function takes geometry and will create a geometry and path
+        // function that are centred on this geometry.
+        var initializeMap = function(state) {
+            // initialize a unit projection.
+            scope.projection = d3.geo.mercator()
+                .scale(1)
+                .translate([0, 0]);
+
+            // Create a path generator.
+            scope.path = d3.geo.path()
+                .projection(scope.projection);
+
+            // Compute the bounds of a feature of interest, then derive scale & translate.
+            var b = scope.path.bounds(state),
+                s = 0.95 / Math.max((b[1][0] - b[0][0]) / scope.minimapState.width, (b[1][1] - b[0][1]) / scope.minimapState.height),
+                t = [(scope.minimapState.width - s * (b[1][0] + b[0][0])) / 2, (scope.minimapState.height - s * (b[1][1] + b[0][1])) / 2];
+
+            // Update the projection to use computed scale & translate.
+            scope.projection
+                .scale(s)
+                .translate(t);
+
+            scope.zoom = d3.behavior.zoom()
+                .translate([0,0])
+                .center([scope.minimapState.width / 2, scope.minimapState.height / 2])
+                .scale(1)
+                .scaleExtent([1, 8])
+                .on('zoom', zoomed);
+
+            scope.svg = d3.select(element[0]).select(MINI_MAP_CLASS)
+                .append('svg')
+                .attr('width', scope.minimapState.width)
+                .attr('height', scope.minimapState.height)
+                .on('click', stopped, true);
+
+            scope.svg.append('rect')
+                .attr('class', 'minimap-background')
+                .attr('width', scope.minimapState.width)
+                .attr('height', scope.minimapState.height)
+                .on('click', reset);
+
+            scope.g = scope.svg.append('g');
+        };
+
+        var drawGeometryToMap = function(geometry) {
+               
+            var state = geometry.objects.State;
+            var counties = geometry.objects.Counties;
+            var regions = geometry.objects.Regions;
+            // var centroids = geometry.objects.TroutStreamCentroids;
+
+
+            // draw counties
+
+
+            // draw regions
+
+
+            // draw centroids
+            // debugger;
+            
+              // .on('click', zoomToGeometry);
+
+            
+
+            scope.g.append('g').attr('class', 'counties')
+                .selectAll('path')
+              .data(topojson.feature(geometry, counties).features)
+            .enter().append('path')
+              .attr('d', scope.path)
+              .attr('class', 'minimap-county');
+
+            scope.g.append('g').attr('class', 'regions').selectAll('path')
+              .data(topojson.feature(geometry, regions).features)
+            .enter().append('path')
+              .attr('d', scope.path)
+              .attr('class', 'minimap-region')
+              .on('click', zoomToGeometry);
+
+          // scope.g.append('path')
+          //     .datum(topojson.mesh(geometry, counties, function(a, b) { return a !== b; }))
+          //     .attr('class', 'mesh')
+          //     .attr('d', scope.path);
+        };
+
+        function reset() {
+            scope.active.classed('active', false);
+            scope.active = d3.select(null);
+
+            scope.svg.transition()
+                .duration(750)
+                .call(scope.zoom.translate([0, 0]).scale(1).event);
+        }
+
+        function zoomed() {
+          scope.g.style('stroke-width', 1.5 / d3.event.scale + 'px');
+          scope.g.attr('transform', 'translate(' + d3.event.translate + ')scale(' + d3.event.scale + ')');
+        }
+
+        function zoomToGeometry(d) {
+            console.log(d);
+            if (scope.active.node() === this) return reset();
+            scope.active.classed('active', false);
+            scope.active = d3.select(this).classed('active', true);
+
+            var bounds = scope.path.bounds(d),
+                dx = bounds[1][0] - bounds[0][0],
+                dy = bounds[1][1] - bounds[0][1],
+                x = (bounds[0][0] + bounds[1][0]) / 2,
+                y = (bounds[0][1] + bounds[1][1]) / 2,
+                scale = 0.95 / Math.max(dx / scope.minimapState.width, dy / scope.minimapState.height),
+                translate = [scope.minimapState.width / 2 - scale * x, scope.minimapState.height / 2 - scale * y];
+
+            scope.svg.transition()
+                .duration(750)
+                .call(scope.zoom.translate(translate).scale(scale).event);
+        }
+
+        function stopped() {
+            if (d3.event.defaultPrevented) d3.event.stopPropagation();
+        }
+
         $q.all([gettingGeometries, gettingRegionData])
         	.then(function(results) {
         		console.log('done');
 
         		var geometries = results[0];
-        		var regions = results[1];
 
-        		scope.stage.regionGeometries = geometries;
-        		if (scope.stage.selectedRegionId == null) {
-        			scope.stage.selectedRegionId = regions[0].RegionId;
-        			scope.stage.selectedCountyId = regions[0].Counties[0].CountyId;
-        		}
+                scope.currentState = topojson.feature(geometries, geometries.objects.State);
+                scope.currentCounties = topojson.feature(geometries, geometries.objects.Counties);
+                scope.currentRegions = topojson.feature(geometries, geometries.objects.Regions);
 
-        		scope.stage.isLoading = false;
+                scope.minimapState.isLoading = false;
+                initializeMap(scope.currentState);
+                drawGeometryToMap(geometries);
         	});
 
         scope.$on('$destroy', function() {
