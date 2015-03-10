@@ -580,14 +580,12 @@ left: 0;
     height: 40px;
     float: right;
     display: block;
-    background-color: #acbb39;
     overflow: hidden;
 }
 
 .minimap-background {
-    fill: none;
-    stroke: #ebebeb;
-    stroke-width: 0.2;
+    fill: #dfdfdf;
+
 }
 
 .minimap-county {
@@ -596,11 +594,21 @@ left: 0;
     stroke-width: 0.1;
 }
 
+.minimap-county.active {
+    fill: #fccc14;
+}
+
 .minimap-region {
     fill: none;
     stroke: #463838;
     stroke-width: 0.2;
     pointer-events: visible;
+}
+
+.minimap-streamPoints {
+    fill: #4e7f84;
+    stroke: #4e7f84;
+    stroke-width: 0.2;
 }
 
 .something {
