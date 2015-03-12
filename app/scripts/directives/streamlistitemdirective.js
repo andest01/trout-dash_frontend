@@ -9,7 +9,7 @@
 angular.module('troutDashApp')
   .directive('streamListItemDirective', function () {
     return {
-      templateUrl: '/views/streamlistitemtemplate.html',
+      templateUrl: './views/streamlistitemtemplate.html',
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
       	scope.isSmall = true;

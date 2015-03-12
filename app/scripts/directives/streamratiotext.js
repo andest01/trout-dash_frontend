@@ -9,7 +9,7 @@
 angular.module('troutDashApp')
 	.directive('streamRatioText', function () {
 		return {
-			templateUrl: '/views/streamratiotexttemplate.html',
+			templateUrl: './views/streamratiotexttemplate.html',
 			restrict: 'A',
 			link: function postLink(scope, element, attrs) {
 				var streamLength = parseFloat(scope.stream.LengthMiles);

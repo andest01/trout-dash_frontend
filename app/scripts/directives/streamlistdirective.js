@@ -8,7 +8,7 @@
 angular.module('troutDashApp')
   .directive('streamList', function (StreamApiService) {
     return {
-    	templateUrl: '/views/streamlisttemplate.html',
+    	templateUrl: './views/streamlisttemplate.html',
       	restrict: 'A',
       	link: function postLink(scope, element, attrs) {
       		scope.stage = {

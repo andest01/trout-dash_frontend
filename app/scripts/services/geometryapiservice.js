@@ -15,7 +15,7 @@ angular.module('troutDashApp')
 
     GeometryApiService.prototype = {
       getRegionGeometries: function() {
-        return $http.get('/data/regionGeometry.json')
+        return $http.get('./data/regionGeometry.json')
           .then(function(response) {
             // return response.data.filter(function(stream) {
             //   return stream.Lakes.Sections.length > 0;
