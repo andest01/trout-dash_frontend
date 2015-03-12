@@ -9,7 +9,7 @@
 angular.module('troutDashApp')
 	.directive('streamLine', function (LinearReferenceViewModel) {
 	return {
-		templateUrl: '/views/streamlinetemplate.html',
+		templateUrl: './views/streamlinetemplate.html',
 		restrict: 'A',
 		link: function (scope, element, attrs) {
 			var length = parseFloat(scope.stream.LengthMiles);

@@ -198,7 +198,24 @@ h4 {
     font-size: 14px;
     font-weight: bold;
     color: #463838;
-    margin-top: 2px;
+    margin-top: 0px;
+}
+
+.region-header {
+    padding: 5px 8px;
+    background-color: #fccc14;
+}
+
+.region-header .secondary {
+    background-color: #acbb39;
+}
+
+.region-header .tertiary {
+    
+}
+
+.region-header .quaternary {
+    
 }
 
 .statusIcon {
@@ -556,4 +573,53 @@ left: 0;
 
 .tray {
 
+}
+
+.miniMap {
+    width: 40px;
+    height: 40px;
+    float: right;
+    display: block;
+    overflow: hidden;
+}
+
+.minimap-background {
+    fill: #dfdfdf;
+
+}
+
+.minimap-county {
+    fill: none;
+    stroke: #ebebeb;
+    stroke-width: 0.1;
+}
+
+.minimap-county.active {
+    fill: #fccc14;
+}
+
+.minimap-region {
+    fill: none;
+    stroke: #463838;
+    stroke-width: 0.2;
+    pointer-events: visible;
+}
+
+.minimap-streamPoints {
+    fill: #4e7f84;
+    stroke: #4e7f84;
+    stroke-width: 0.2;
+}
+
+.something {
+    width: 40px;
+    height: 40px;
+    /* padding-right: 20px; */
+    /* margin-top: 12px; */
+    /* margin-right: 4px; */
+    float: right;
+    z-index: 40100;
+    position: fixed;
+    right: 9px;
+    top: 4px;
 }

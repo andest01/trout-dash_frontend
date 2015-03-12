@@ -15,7 +15,7 @@ angular.module('troutDashApp')
 
     StreamApiService.prototype = {
       getStreams: function() {
-        return $http.get('/data/trout-dash-minnesota.json')
+        return $http.get('./data/trout-dash-minnesota.json')
           .then(function(response) {
             // return response.data.filter(function(stream) {
             //   return stream.Lakes.Sections.length > 0;
@@ -25,7 +25,7 @@ angular.module('troutDashApp')
       },
 
       getRegions: function() {
-        return $http.get('/data/regionDetails.json')
+        return $http.get('./data/regionDetails.json')
           .then(function(response) {
             return response.data;
           });

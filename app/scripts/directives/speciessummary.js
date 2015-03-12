@@ -9,7 +9,7 @@
 angular.module('troutDashApp')
   .directive('speciesSummary', function () {
     return {
-      templateUrl: '/views/speciessummarytemplate.html',
+      templateUrl: './views/speciessummarytemplate.html',
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
 
