@@ -622,4 +622,7 @@ left: 0;
     position: fixed;
     right: 9px;
     top: 4px;
+    -webkit-transition: max-height 0.8s;
+    -moz-transition: max-height 0.8s;
+    transition: max-height 0.8s;
 }

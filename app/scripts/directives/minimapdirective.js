@@ -153,10 +153,12 @@ angular.module('troutDashApp')
                 .on('click', reset);
 
             scope.g = scope.svg.append('g');
+
+
+
         };
 
         var drawGeometryToMap = function(geometry) {
-               
             var state = geometry.objects.State;
             var counties = geometry.objects.Counties;
             var regions = geometry.objects.Regions;
@@ -176,7 +178,7 @@ angular.module('troutDashApp')
 
             
 
-            scope.countiesGroup = scope.g.append('g').attr('class', 'counties')
+            scope.countiesGroup = scope.g.append('g').attr('class', 'counties');
             scope.countiesGroup.selectAll('path')
               .data(topojson.feature(geometry, counties).features)
             .enter().append('path')
@@ -185,6 +187,16 @@ angular.module('troutDashApp')
                 return d.properties.name;
               })
               .attr('class', 'minimap-county');
+              // .style({'fill': function(d) {
+              //   var count = d.properties.COUNT;
+              //   if (count === 0) {
+              //       return 'none';
+              //   }
+              //   var color = scope.countyChoroplethScale(count);
+              //   console.log(color);
+
+              //   return ''+ color;
+              // }});
 
             scope.regionsGroup = scope.g.append('g').attr('class', 'regions');
             scope.regionsGroup.selectAll('path')
@@ -197,11 +209,11 @@ angular.module('troutDashApp')
               })
               .on('click', zoomToGeometry);
 
-              scope.g.append('g').attr('class', 'streams').selectAll('path')
-              .data(topojson.feature(geometry, centroids).features)
-            .enter().append('path')
-              .attr('d', scope.path)
-              .attr('class', 'minimap-streamPoints');
+            //   scope.g.append('g').attr('class', 'streams').selectAll('path')
+            //   .data(topojson.feature(geometry, centroids).features)
+            // .enter().append('path')
+            //   .attr('d', scope.path)
+            //   .attr('class', 'minimap-streamPoints');
 
             
 
@@ -266,9 +278,21 @@ angular.module('troutDashApp')
 
         		var geometries = results[0];
 
+
                 scope.currentState = topojson.feature(geometries, geometries.objects.State);
                 scope.currentCounties = topojson.feature(geometries, geometries.objects.Counties);
                 scope.currentRegions = topojson.feature(geometries, geometries.objects.Regions);
+
+                var minStreamCount = 0;
+                var countyStreamCounts = scope.currentCounties.features.map(function(feat) {
+                    return Math.max(0, feat.properties.COUNT);
+                });
+                var maxStreamCount = d3.max(countyStreamCounts);
+
+                scope.countyChoroplethScale = d3.scale.linear()
+                    .domain([minStreamCount, maxStreamCount])
+                    .range(['#FFFFBB', '#BB00CC']);
+
 
                 scope.minimapState.isLoading = false;
                 initializeMap(scope.currentState);
