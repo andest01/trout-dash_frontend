@@ -184,7 +184,7 @@ angular.module('troutDashApp')
             .enter().append('path')
               .attr('d', scope.path)
               .attr('data-id', function(d) {
-                return d.properties.name;
+                return getFipsCodeSelector(d);
               })
               .attr('class', 'minimap-county');
               // .style({'fill': function(d) {
@@ -256,9 +256,23 @@ angular.module('troutDashApp')
                 .call(scope.zoom.translate(translate).scale(scale).event);
         }
 
+        function getFipsCode(countyFeature) {
+            if (countyFeature == null) {
+                return '';
+            }
+
+            var fips = countyFeature.properties.statefp + countyFeature.properties.countyfp;
+            return fips;
+        }
+
+        function getFipsCodeSelector(countyFeature) {
+            return 'county_' + getFipsCode(countyFeature);
+        }
+
         function selectCounty(d) {
             console.log(d);
-            var attribute = '[data-id=' + d.properties.name + ']';
+            var fips = getFipsCodeSelector(d);
+            var attribute = '[data-id=' + fips + ']';
             var t = scope.countiesGroup.select(attribute).node();
             if (scope.selectedCounty.node() === t) {
                 return;
