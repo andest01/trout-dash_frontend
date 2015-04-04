@@ -30,6 +30,11 @@ angular.module('troutDashApp')
         scope.active = d3.select(null);
         scope.selectedCounty = d3.select(null);
 
+        $rootScope.$on('county-select', function(event, item) {
+            console.log(item);
+            
+        });
+
         $rootScope.$on('header-clone', function(event, item) {
         	if (item == null) {
         		return;
