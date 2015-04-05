@@ -8,11 +8,10 @@
  * Controller of the troutDashApp
  */
 angular.module('troutDashApp')
-  .controller('MainCtrl', function ($scope, StreamApiService) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($scope, StreamApiService, TableOfContentsRepository) {
+    TableOfContentsRepository.getTableOfContents()
+    	.then(function(results) {
+
+    	});
     
   });

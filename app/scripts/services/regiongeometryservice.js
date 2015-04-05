@@ -14,7 +14,7 @@ angular.module('troutDashApp')
     };
 
     var proto = {
-
+    	
     };
 
     RegionGeometryService.prototype = proto;
