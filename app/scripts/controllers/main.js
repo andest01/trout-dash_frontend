@@ -9,9 +9,6 @@
  */
 angular.module('troutDashApp')
   .controller('MainCtrl', function ($scope, StreamApiService, TableOfContentsRepository) {
-    TableOfContentsRepository.getTableOfContents()
-    	.then(function(results) {
-
-    	});
+    
     
   });

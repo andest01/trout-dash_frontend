@@ -21,18 +21,19 @@ angular.module('troutDashApp')
       centroidLongitude: NaN,
       type: null,
       parent: null,
-      children: []
+      children: [],
+
+      init: function() {
+        this.id = null;
+        this.name = '';
+        this.geometry = null;
+        this.centroidLongitude = NaN;
+        this.centroidLatitude = NaN;
+        this.parent = null;
+        this.children = [];
+      }
     };
 
-    HierarchicalGeometryViewModel.prototype.init = function() {
-      this.id = null;
-      this.name = '';
-      this.geometry = null;
-      this.centroidLongitude = NaN;
-      this.centroidLatitude = NaN;
-      this.parent = null;
-      this.children = [];
-    };
 
     return HierarchicalGeometryViewModel;
   });
