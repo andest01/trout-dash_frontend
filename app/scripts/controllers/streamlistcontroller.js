@@ -40,11 +40,7 @@ angular.module('troutDashApp')
 
 			// load it from our repository.
 			var stateModel = regionModel.parent;
-			RegionGeometryService.getRegion(stateModel, regionModel)
-				.then(function(geometry) {
-					debugger;
-				});
-
+			return RegionGeometryService.getRegion(stateModel, regionModel);
 		};
 
 		$scope.getTableOfContents = function() {

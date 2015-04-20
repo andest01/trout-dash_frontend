@@ -40,7 +40,6 @@ angular.module('troutDashApp')
 		var promise = RegionApiService.getRegion(stateId, regionId)
 			.then(function(geometry) {
 				console.log('new geom', geometry);
-				debugger;
 				return geometry;
 			});
 

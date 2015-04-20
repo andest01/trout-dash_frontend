@@ -583,26 +583,37 @@ left: 0;
     overflow: hidden;
 }
 
-.minimap-background {
+.minimap-geography_background {
     fill: #dfdfdf;
 
 }
 
-.minimap-county {
+.minimap-geography_county {
     fill: none;
     stroke: #ebebeb;
     stroke-width: 0.1;
 }
 
-.minimap-county.active {
+.minimap-geography_county.active {
     fill: #fccc14;
 }
 
-.minimap-region {
+.minimap-geogrpahy_region {
     fill: none;
     stroke: #463838;
     stroke-width: 0.2;
     pointer-events: visible;
+}
+
+.minimap-geogrpahy_region.active {
+    fill: none;
+    stroke: #463838;
+    stroke-width: 0.2;
+    pointer-events: visible;
+}
+
+.minimap-geogrpahy_region:hover {
+    stroke: #fccc14;
 }
 
 .minimap-streamPoints {
@@ -639,7 +650,7 @@ left: 0;
     z-index: 40100;
     position: fixed;
     right: 9px;
-    top: 4px;
+    top: 80px;
     background: blue;
     transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
@@ -648,9 +659,9 @@ left: 0;
     -ms-transition: all 0.4s ease-in-out;
 }
 
-.somethingContainer-hover {
+.somethingContainer-major {
     width: 98%;
-    height: 99%;
+    height: 94%;
 }
 
 .somethingContainer-fillMurray {
@@ -665,7 +676,7 @@ left: 0;
     height: 100%;
 }
 
-.minimap-container {
+.minimap-root {
     height: 100%;
     display:block;
     max-width: 100%;
