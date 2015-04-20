@@ -23,17 +23,24 @@
 
 
     <div class="container">
-    <div ng-controller="StreamlistcontrollerCtrl"></div>
-      <div class="somethingContainer">
-        <div class="somethingContainer-fillMurray">
-            <div class="something" data-mini-map-directive></div>
-            <!-- <img src="http://fillmurray.com/500/500" /> -->
-        </div>
-        <div class="something" data-mini-map-directive></div>
-      </div>
-      <div data-stream-list>
+        <div ng-controller="StreamlistcontrollerCtrl">
+          <div class="somethingContainer">
+            <div class="somethingContainer-fillMurray">
+                <!-- <div class="something" data-mini-map-directive></div> -->
+                <!-- <img src="http://fillmurray.com/500/500" /> -->
+            </div>
+            <div class="something" data-mini-map-directive>
+                
+            </div>
 
-      </div>
+            </div>
+                <div data-mini-map-test-harness-directive>
+                </div>
+          
+                <!-- <div data-stream-list>
+
+                </div> -->
+        </div>
     </div>
 
 
@@ -88,6 +95,11 @@
     <script src="scripts/services/stateapiservice.js"></script>
     <script src="scripts/services/regionrepositoryservice.js"></script>
     <script src="scripts/services/regiongeometryservice.js"></script>
+    <script src="scripts/services/baseapiservice.js"></script>
+    <script src="scripts/directives/minimaptestharnessdirective.js"></script>
+    <script src="scripts/services/basemodel.js"></script>
+    <script src="scripts/services/basecollection.js"></script>
+    <script src="scripts/services/hierarchicalgeometrycollection.js"></script>
     <!-- endbuild -->
 </body>
 </html>

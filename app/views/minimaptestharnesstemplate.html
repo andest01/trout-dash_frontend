@@ -1,0 +1,19 @@
+<div>
+	<form>
+		<div>
+			<button data-ng-click="onLoadTocClick()">Load ToC</button>
+		</div>
+		<button data-ng-repeat="region in regions"
+			data-ng-click="onLoadRegionGeometriesClick(region)">
+			{{::region.name}}
+		</button>	
+		<!-- <button data-ng-click="onLoadRegionGeometriesClick()">Load Region Geometries
+		</button> -->
+		<div>
+			<button data-ng-click="onZoomClick()">Zoom</button>
+		</div>
+		<div>
+			<button data-ng-click="onToggleClick()">Toggle</button>
+		</div>
+	</form>
+</div>
