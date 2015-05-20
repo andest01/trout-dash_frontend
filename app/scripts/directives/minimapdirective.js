@@ -180,7 +180,6 @@ angular.module('troutDashApp')
             var isMacro = scope.minimapState.isMacro;
             if (isMacro) {
                 // assume selection has occured.
-
                 // set loading state on region.
                 scope.selectRegion(region)
                     .then(function(geometry) {
