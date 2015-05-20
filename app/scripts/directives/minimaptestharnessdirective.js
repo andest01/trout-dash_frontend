@@ -25,6 +25,7 @@ angular.module('troutDashApp')
         };
 
         scope.onLoadRegionGeometriesClick = function(regionModel) {
+          console.log('click');
         	scope.selectRegion(regionModel);
         };
 

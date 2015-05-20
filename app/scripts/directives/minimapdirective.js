@@ -20,8 +20,8 @@ angular.module('troutDashApp')
         	regionGeometries: null,
         	selectedRegionId: null,
         	selectedCountyId: null,
-            width: 200,
-            height: 200,
+            width: 45,
+            height: 45,
             isMacro: false,
 
             loadingRegion: d3.select(null)
@@ -63,8 +63,9 @@ angular.module('troutDashApp')
 				}
 
 				console.log('new region!', newRegion);
-                var soughtRegion = scope.currentRegions.features.filter(function(f) {
-                    return f.properties.gid === newRegion;
+
+                var soughtRegion = scope.currentRegions.filter(function(f) {
+                    return f.id === newRegion;
                 });
 
                 if (soughtRegion.length > 0 && newRegion !== oldRegion) {
@@ -81,11 +82,11 @@ angular.module('troutDashApp')
 				}
 
 				console.log('new County!', newCounty);
-                var soughtRegion = scope.currentCounties.features.filter(function(f) {
-                    return f.properties.name === newCounty;
+                var soughtCounty = scope.currentCounties.filter(function(f) {
+                    return f.name === newCounty;
                 });
-                if (soughtRegion.length > 0 && newCounty !== oldCounty) {
-                    selectCounty(soughtRegion[0]);
+                if (soughtCounty.length > 0 && newCounty !== oldCounty) {
+                    selectCounty(soughtCounty[0]);
                 }
 			});
 
@@ -120,7 +121,7 @@ angular.module('troutDashApp')
         // function that are centred on this geometry.
         var initializeMap = function(stateObject) {
             // initialize a unit projection.
-            scope.projection = d3.geo.mercator()
+            scope.projection = d3.geo.albersUsa()
                 .scale(1)
                 .translate([0, 0]);
 
@@ -174,6 +175,10 @@ angular.module('troutDashApp')
 
             scope.regions = scope.root.append('g')
                 .attr('class', 'minimap-geography minimap-geogrpahy_regions');  
+
+            // scope.selectedRegion = scope.root.append('use')
+            //     .attr('xlink:href', '#region_2')
+            //     .attr('class', 'minimap-geogrpahy_region_use');
         };
 
         var onRegionClick = function(region, regionId) {
@@ -181,15 +186,20 @@ angular.module('troutDashApp')
             if (isMacro) {
                 // assume selection has occured.
                 // set loading state on region.
+                onLoadRegion.bind(this)(region);
+
                 scope.selectRegion(region)
                     .then(function(geometry) {
+                        scope.minimapState.selectedRegionId = region.id;
+                        resetLoadRegion();
+
                         // set controller's state
                         scope.mapState.selectedRegion = geometry;
+                        console.log(geometry);
+                        minifyMinimap();
                     });
 
                 // TODO: remove the minification.
-                minifyMinimap();
-                
             } else {
                 macrofyMinimap();
             }
@@ -220,6 +230,7 @@ angular.module('troutDashApp')
 
         var macrofyMinimap = function() {
             scope.minimapState.isMacro = true;
+            reset();
         };
 
         var drawGeometryToMap = function(states, regions, counties) {
@@ -233,15 +244,15 @@ angular.module('troutDashApp')
               .attr('data-id', function(d) {
                 return getFipsCodeSelector(d);
               })
-              .attr('class', 'minimap-geography_county')
-              .style({'fill': function(d) {
-                var count = d.stream_count;
-                if (count === 0) {
-                    return 'none';
-                }
-                var color = scope.countyChoroplethScale(count);
-                return ''+ color;
-              }});
+              .attr('class', 'minimap-geography_county');
+              // .style({'fill': function(d) {
+              //   var count = d.stream_count;
+              //   if (count === 0) {
+              //       return 'none';
+              //   }
+              //   var color = scope.countyChoroplethScale(count);
+              //   return ''+ color;
+              // }});
 
             // scope.regionsGroup = scope.g.append('g').attr('class', 'regions');
             scope.regions.selectAll('path.minimap-geogrpahy_region') 
@@ -249,16 +260,20 @@ angular.module('troutDashApp')
                 return d.id;
               })
             .enter().append('path')
-              .attr('d', function(d) {
-                return scope.path(d.geometry);
-                })
+
               .attr('class', 'minimap-geogrpahy_region')
               .attr('data-id', function(d) {
                 return d.id;
               })
+              .attr('id', function(d) {
+                return 'region_' + d.id;
+              })
               .attr('data-name', function(d) {
                 return d.shortName;
               })
+                .attr('d', function(d) {
+                    return scope.path(d.geometry);
+                })
               .on('click', onRegionClick);
         };
 
@@ -278,13 +293,27 @@ angular.module('troutDashApp')
           scope.root.attr('transform', 'translate(' + d3.event.translate + ')scale(' + d3.event.scale + ')');
         }
 
+        function onLoadRegion(regionElement) {
+            resetLoadRegion();
+            scope.minimapState.loadingRegion = d3.select(this).classed('minimap-geogrpahy_region_loading', true);
+        }
+
+        function resetLoadRegion() {
+            if (scope.minimapState.loadingRegion == null) {
+                return;
+            }
+
+            scope.minimapState.loadingRegion.classed('minimap-geogrpahy_region_loading', false);
+            scope.minimapState.loadingRegion = d3.select(null);
+        }
+
         function zoomToGeometry(d) {
             console.log(d);
             if (scope.active.node() === this) return reset();
             scope.active.classed('active', false);
             scope.active = d3.select(this).classed('active', true);
 
-            var bounds = scope.path.bounds(d),
+            var bounds = scope.path.bounds(d.geometry),
                 dx = bounds[1][0] - bounds[0][0],
                 dy = bounds[1][1] - bounds[0][1],
                 x = (bounds[0][0] + bounds[1][0]) / 2,
@@ -314,7 +343,7 @@ angular.module('troutDashApp')
             console.log(d);
             var fips = getFipsCodeSelector(d);
             var attribute = '[data-id=' + fips + ']';
-            var t = scope.countiesGroup.select(attribute).node();
+            var t = scope.counties.select(attribute).node();
             if (scope.selectedCounty.node() === t) {
                 return;
             }

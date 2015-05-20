@@ -576,8 +576,8 @@ left: 0;
 }
 
 .miniMap {
-    width: 200px;
-    height: 200px;
+    width: 45px;
+    height: 45px;
     float: right;
     display: block;
     overflow: hidden;
@@ -601,8 +601,9 @@ left: 0;
 .minimap-geogrpahy_region {
     fill: none;
     stroke: #463838;
-    stroke-width: 0.2;
+    stroke-width: 0.5;
     pointer-events: visible;
+    stroke-linejoin: round;
 }
 
 .minimap-geogrpahy_region.active {
@@ -613,7 +614,21 @@ left: 0;
 }
 
 .minimap-geogrpahy_region:hover {
+    fill: #fccc14;
+/*    stroke-dasharray: 8;
+    animation: dash 1s linear infinite;*/
+}
+
+.minimap-geogrpahy_region_loading {
     stroke: #fccc14;
+    stroke-dasharray: 8;
+    animation: dash 60s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000;
+  }
 }
 
 .minimap-streamPoints {
@@ -645,13 +660,13 @@ left: 0;
 }
 
 .somethingContainer {
-    width: 200px;
-    height: 200px;
+    width: 45px;
+    height: 45px;
     z-index: 40100;
     position: fixed;
     right: 9px;
-    top: 80px;
-    background: blue;
+    top: 2px;
+    /*background: blue;*/
     transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
     -webkit-transition: all 0.4s ease-in-out;
