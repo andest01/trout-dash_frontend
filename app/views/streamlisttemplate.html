@@ -1,6 +1,6 @@
-<div data-ng-cloak>
+<!-- <div data-ng-cloak>
 	
-	<!--Region Header -->
+
 	<div 
 		data-ng-if="mapState.selectedRegion" 
 		data-ng-repeat="region in mapState.selectedRegion" id="{{getRegionId(region)}}">
@@ -10,10 +10,10 @@
 			scroll-object="region"
 			z-index-override="10100"
 			class="sectionTitle region-header">{{::region.name}}</div>
-		<!--County Header -->
+
 		<div  data-ng-repeat="county in region.children" id="{{getCountyId(county)}}">
 			
-			<!--F FSM Sticky Header Placeholder County Header -->
+
 			<div fsm-sticky-header 
 				scroll-body="getCountyScrollBodyId(county)" 
 				scroll-stop="23" 
@@ -28,4 +28,32 @@
 		</div>
 	</div>
 	
+</div>
+ -->
+
+ <div data-ng-cloak id="js-list-container">
+	<!--Region Header -->
+	<div data-ng-repeat="region in mapState.selectedRegion" id="{{::getRegionId(region)}}">
+		<div fsm-sticky-header 
+			scroll-body="getRegionScrollBodyId(region)"
+			scroll-stop="0"
+			scroll-object="region"
+			z-index-override="10100"
+			class="sectionTitle region-header" >{{::region.name}}</div>
+		<!--County Header -->
+		<div  data-ng-repeat="county in ::region.children" id="{{::getCountyId(county)}}">
+			
+			<!--F FSM Sticky Header Placeholder County Header -->
+			<div fsm-sticky-header 
+				scroll-body="getCountyScrollBodyId(county)" 
+				scroll-stop="23" 
+				scroll-object="county"
+				z-index-override="10000"
+				class="sectionTitle region-header" >{{::county.name}} Co. 
+			</div>
+			<div ng-class-odd="'box'" ng-class-even="'box box-secondary'" data-ng-repeat="stream in county.children" data-stream-list-item-directive>
+
+			</div>
+		</div>
+	</div>
 </div>

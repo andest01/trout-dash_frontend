@@ -30,9 +30,13 @@ angular.module('troutDashApp')
           // return '';
       };
 
+      scope.getScrollContainer = function() {
+        return '#js-list-container';
+      };
+
       scope.getCountyId = function(county) {
         // console.log(county);
-        return 'county_' + county.id;
+        return 'hdr-county_' + county.id;
       // return '';
       };
 
@@ -43,7 +47,7 @@ angular.module('troutDashApp')
       };
 
       scope.getRegionId = function(region) {
-        var result = 'region_' + region.id;
+        var result = 'hdr-region_' + region.id;
         return result;
       };
 
