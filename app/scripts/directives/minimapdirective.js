@@ -40,8 +40,6 @@ angular.module('troutDashApp')
         		return;
         	}
 
-            console.log(item);
-
         	if (item.RegionId != null) {
         		scope.minimapState.selectedRegionId = item.RegionId;
                 scope.$apply();
@@ -192,9 +190,7 @@ angular.module('troutDashApp')
                     .then(function(geometry) {
                         scope.minimapState.selectedRegionId = region.id;
                         resetLoadRegion();
-
                         // set controller's state
-                        scope.mapState.selectedRegion = geometry;
                         console.log(geometry);
                         minifyMinimap();
                     });

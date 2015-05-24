@@ -15,6 +15,7 @@ angular.module('troutDashApp')
 			var mapState = {
 				isExpanded: false,
 				isLoading: false,
+				selectedRegionGeometry: null,
 				selectedRegion: null,
 				selectedCounty: null,
 				highlightedStream: null,
@@ -30,17 +31,29 @@ angular.module('troutDashApp')
 		};
 
 		$scope.selectRegion = function(regionModel) {
-			console.log(regionModel);
+			if (regionModel == null) {
+				throw new Error('regionModel cannot be null');
+			}
+
+			$scope.mapState.selectedRegion = [regionModel];
+
+			// TODO: fix this to have an actual cache.
 			// try to pull it from the cache
 			var canRetrieveFromCache = false;
 			if (canRetrieveFromCache) {
 				// return it from our cache.
+				// TODO: fix this part too
+				$scope.mapState.selectedRegionGeometry = null;
 				return;
 			}
 
 			// load it from our repository.
 			var stateModel = regionModel.parent;
-			return RegionGeometryService.getRegion(stateModel, regionModel);
+			return RegionGeometryService.getRegion(stateModel, regionModel)
+				.then(function(newSelectedRegionGeometry) {
+					$scope.mapState.selectedRegionGeometry = [newSelectedRegionGeometry];
+					return newSelectedRegionGeometry;
+				});
 		};
 
 		$scope.getTableOfContents = function() {

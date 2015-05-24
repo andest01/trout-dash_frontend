@@ -1,15 +1,17 @@
 <div data-ng-cloak>
 	
 	<!--Region Header -->
-	<div data-ng-repeat="region in ::stage.regions" id="{{::getRegionId(region)}}">
+	<div 
+		data-ng-if="mapState.selectedRegion" 
+		data-ng-repeat="region in mapState.selectedRegion" id="{{getRegionId(region)}}">
 		<div fsm-sticky-header 
 			scroll-body="getRegionScrollBodyId(region)"
-			scroll-stop="0"
+			scroll-stop="2"
 			scroll-object="region"
 			z-index-override="10100"
-			class="sectionTitle region-header" >{{::region.RegionName}}</div>
+			class="sectionTitle region-header">{{::region.name}}</div>
 		<!--County Header -->
-		<div  data-ng-repeat="county in ::region.Counties" id="{{::getCountyId(county)}}">
+		<div  data-ng-repeat="county in region.children" id="{{getCountyId(county)}}">
 			
 			<!--F FSM Sticky Header Placeholder County Header -->
 			<div fsm-sticky-header 
@@ -17,9 +19,10 @@
 				scroll-stop="23" 
 				scroll-object="county"
 				z-index-override="10000"
-				class="sectionTitle region-header" >{{::county.CountyName}} Co. 
+				class="sectionTitle region-header" >
+					{{::county.name}} Co. 
 			</div>
-			<div ng-class-odd="'box'" ng-class-even="'box box-secondary'" data-ng-repeat="stream in county.Streams" data-stream-list-item-directive>
+			<div ng-class-odd="'box'" ng-class-even="'box box-secondary'" data-ng-repeat="stream in county.children" data-stream-list-item-directive>
 
 			</div>
 		</div>

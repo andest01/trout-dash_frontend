@@ -17,30 +17,34 @@ angular.module('troutDashApp')
       			selectedStream: null
       		};
 
-	        StreamApiService.getRegions()
-    				.then(function(regions) {
+	       //  StreamApiService.getRegions()
+    				// .then(function(regions) {
 
-    					scope.stage.regions = regions;
-    				});
+    				// 	scope.stage.regions = regions;
+    				// });
 
       scope.getCountyScrollBodyId = function(county) {
-          return '#' + scope.getCountyId(county);
+          var result = '#' + scope.getCountyId(county);
+          console.log(result);
+          return result;
           // return '';
       };
 
       scope.getCountyId = function(county) {
         // console.log(county);
-        return 'county_' + county.CountyId;
+        return 'county_' + county.id;
       // return '';
       };
 
       scope.getRegionScrollBodyId = function(region) {
-          return '#' + scope.getRegionId(region);
-          // return '';
+          var result = '#' + scope.getRegionId(region);
+          console.log(result);
+          return result;
       };
 
       scope.getRegionId = function(region) {
-        return 'region_' + region.RegionId;
+        var result = 'region_' + region.id;
+        return result;
       };
 
       scope.$watch('stage.streams', function(newStreams, oldStreams) {

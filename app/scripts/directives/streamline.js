@@ -18,8 +18,6 @@ angular.module('troutDashApp')
 			}
 
 			var inverseLength = 1/length;
-
-            // console.log(scope.stream);
 			scope.stage = {
 				width: 292
 			};
