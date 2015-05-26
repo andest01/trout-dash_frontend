@@ -66,10 +66,14 @@ angular.module('troutDashApp')
                         regionModel.geometry = feature;
                         regionModel.type = 'region';
                         return regionModel;})
+                    .sortBy('name')
                     .indexBy('id')
                     .value();
                 
                 var countyhash = _(counties.features)
+                    .filter(function(feature) {
+                        return feature.properties.stream_count > 0;
+                    })
                     .map(function(feature) {
                         var countyModel = new HierarchicalGeometryViewModel();
                         var properties = feature.properties;
@@ -79,6 +83,7 @@ angular.module('troutDashApp')
                         _.extend(countyModel, properties);
                         countyModel.type = 'county';
                         return countyModel;})
+                    .sortBy('name')
                     .indexBy('id')
                     .value();
 
@@ -105,21 +110,7 @@ angular.module('troutDashApp')
                         _.extend(streamModel, properties);
                         streamModel.type = 'streamCentroid';
                         return streamModel;})
-                    .indexBy('id')
-                    .value();
-
-                var streamHash = _(streams.features)
-                    .map(function(feature) {
-                        var streamModel = new HierarchicalGeometryViewModel();
-                        var properties = feature.properties;
-                        streamModel.id = properties.Id;
-                        streamModel.name = properties.Name;
-                        streamModel.geometry = feature;
-                        streamModel.centroidLongitude = properties.CentroidLongitude;
-                        streamModel.centroidLatitude = properties.CentroidLatitude;
-                        _.extend(streamModel, properties);
-                        streamModel.type = 'streamCentroid';
-                        return streamModel;})
+                    .sortBy('name')
                     .indexBy('id')
                     .value();
 
@@ -146,6 +137,7 @@ angular.module('troutDashApp')
                         // what to do about the parent tho?
                     });
                 });
+
                 this.logCache();
                 return stateHash;
 			}.bind(this));

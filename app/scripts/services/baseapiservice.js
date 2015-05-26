@@ -7,7 +7,7 @@
  * # BaseApiService
  * Factory in the troutDashApp.
  */
-var DEBUGGER_LATENCY = 1000;
+var DEBUGGER_LATENCY = 800;
 var sessionStorage = window.sessionStorage;
 
 angular.module('troutDashApp')
@@ -58,19 +58,6 @@ angular.module('troutDashApp')
           }, DEBUGGER_LATENCY);
 
           return deferred.promise;
-
-        // return $http(config)
-        //   .then(function(response) {
-        //       if (response && response.data && response.data.exceptionType) {
-        //           return $q.reject(response.data);
-        //       }
-
-        //       return response.data;
-        //   }).catch(function(reason) {
-        //       // perform some operation here if need be...
-        //       return $q.reject(reason);
-        //   });
-
       }
     };
 

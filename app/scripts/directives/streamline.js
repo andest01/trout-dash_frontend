@@ -203,7 +203,7 @@ angular.module('troutDashApp')
                     return null;
                 }
 
-                return scope.stream.Counties.join(',');
+                return scope.stream.Counties.map(function(c) { return c.Name; }).join(',');
             };
 
             scope.getAlternativeNames = function() {

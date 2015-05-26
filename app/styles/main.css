@@ -601,7 +601,7 @@ left: 0;
 .minimap-geogrpahy_region {
     fill: none;
     stroke: #463838;
-    stroke-width: 0.5;
+    stroke-width: 0.3;
     pointer-events: visible;
     stroke-linejoin: round;
 }
@@ -614,7 +614,7 @@ left: 0;
 }
 
 .minimap-geogrpahy_region:hover {
-    fill: #fccc14;
+    stroke: #fccc14;
 /*    stroke-dasharray: 8;
     animation: dash 1s linear infinite;*/
 }
@@ -623,6 +623,10 @@ left: 0;
     stroke: #fccc14;
     stroke-dasharray: 8;
     animation: dash 60s linear infinite;
+}
+
+.minimap-geography_stream {
+    fill: #4e7f84;
 }
 
 @keyframes dash {

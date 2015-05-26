@@ -8,7 +8,7 @@
  * Controller of the troutDashApp
  */
 angular.module('troutDashApp')
-	.controller('StreamlistcontrollerCtrl', function ($scope, StreamApiService, TableOfContentsRepository, RegionGeometryService) {
+	.controller('StreamlistcontrollerCtrl', function ($scope, StreamApiService, TableOfContentsRepository, RegionGeometryService, $anchorScroll) {
 		$scope.isSmallView = true;
 
 		var getInitialMapState = function() {
@@ -35,7 +35,7 @@ angular.module('troutDashApp')
 				throw new Error('regionModel cannot be null');
 			}
 
-			$scope.mapState.selectedRegion = [regionModel];
+			
 
 			// TODO: fix this to have an actual cache.
 			// try to pull it from the cache
@@ -44,6 +44,7 @@ angular.module('troutDashApp')
 				// return it from our cache.
 				// TODO: fix this part too
 				$scope.mapState.selectedRegionGeometry = null;
+				$scope.mapState.selectedRegion = [regionModel];
 				return;
 			}
 
@@ -52,6 +53,8 @@ angular.module('troutDashApp')
 			return RegionGeometryService.getRegion(stateModel, regionModel)
 				.then(function(newSelectedRegionGeometry) {
 					$scope.mapState.selectedRegionGeometry = [newSelectedRegionGeometry];
+					$scope.mapState.selectedRegion = [regionModel];
+					$anchorScroll('region-hdr_' + regionModel.id);
 					return newSelectedRegionGeometry;
 				});
 		};

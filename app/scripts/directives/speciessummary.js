@@ -12,7 +12,6 @@ angular.module('troutDashApp')
       templateUrl: './views/speciessummarytemplate.html',
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
-
       }
     };
   });

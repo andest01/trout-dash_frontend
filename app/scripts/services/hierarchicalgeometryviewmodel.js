@@ -30,7 +30,7 @@ angular.module('troutDashApp')
         this.shortName = '';
         this.geometry = null;
         this.centroidLongitude = NaN;
-        this.centroidLatitude = NaN;
+        this.centroidLatitude = NaN; 
         this.parent = null;
         this.children = [];
       }

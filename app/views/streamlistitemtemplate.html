@@ -5,7 +5,7 @@
                 <h2>
                     <a data-ng-click="selectStream(stream)" href="https://www.google.com/maps/@{{::stream.CentroidLongitude}},{{::stream.CentroidLatitude}},14z"  class="link js-stream-link sectionTitle" >{{::stream.Name}}</a>
                     <div class="box-hd_minor">{{getAlternativeNames()}}</div>
-                    <div data-ng-if="isSmall == false" class="box-hd_minor">{{getCounties()}} Co.</div>
+                    <div data-ng-if="isSmall == false" class="box-hd_minor">{{::getCounties()}} Co.</div>
 
                 </h2>
             </div>
@@ -27,7 +27,6 @@
                     </div>
 
                     <div class="grid-row-col grid-row-col_6of12" >
-                        <!-- data-ng-show="isAlertSymbolDisplayed()" -->
                         <span  data-ng-class="{'alert-none': !isAlertSymbolDisplayed()}">
                             <div class="imageOverlay-icn"> 
                                 <svg class="alert" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="16" viewBox="0 0 32 32">
