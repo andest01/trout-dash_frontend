@@ -601,7 +601,7 @@ left: 0;
 .minimap-geogrpahy_region {
     fill: none;
     stroke: #463838;
-    stroke-width: 0.3;
+    stroke-width: 0.2;
     pointer-events: visible;
     stroke-linejoin: round;
 }

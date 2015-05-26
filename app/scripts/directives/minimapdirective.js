@@ -276,7 +276,7 @@ angular.module('troutDashApp')
             scope.active = d3.select(null);
 
             scope.svg.transition()
-                .duration(200)
+                .duration(300)
                 .call(scope.zoom.translate([0, 0]).scale(1).event);
         }
 
@@ -315,11 +315,13 @@ angular.module('troutDashApp')
                 })
                 .style('opacity', 0)
                 .transition()
-                .delay(150)
+                .delay(200)
+                .duration(750)
                 .style('opacity', 1);
 
             streamObjects.exit()
                 .transition()
+                .duration(300)
                 .style('opacity', 0)
                 .remove();
                 
@@ -348,7 +350,8 @@ angular.module('troutDashApp')
                 translate = [scope.minimapState.width / 2 - scale * x, scope.minimapState.height / 2 - scale * y];
 
             scope.svg.transition()
-                .duration(200)
+                .delay(200)
+                .duration(750)
                 .call(scope.zoom.translate(translate).scale(scale).event);
         }
 
