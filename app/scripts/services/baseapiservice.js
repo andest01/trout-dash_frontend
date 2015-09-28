@@ -7,12 +7,14 @@
  * # BaseApiService
  * Factory in the troutDashApp.
  */
-var DEBUGGER_LATENCY = 800;
-var sessionStorage = window.sessionStorage;
+
+
 
 angular.module('troutDashApp')
   .factory('BaseApiService', ['$rootScope', '$cacheFactory', '$http', '$q', '$timeout',
     function ($rootScope, $cacheFactory, $http, $q, $timeout) {
+    var sessionStorage = window.sessionStorage;
+    var DEBUGGER_LATENCY = 800;
     var globalCache = $cacheFactory('du');
 
     function BaseApiService() {
