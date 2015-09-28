@@ -8,7 +8,10 @@
  * Controller of the troutDashApp
  */
 angular.module('troutDashApp')
-	.controller('StreamlistcontrollerCtrl', function ($scope, StreamApiService, TableOfContentsRepository, RegionGeometryService, $anchorScroll) {
+	.controller('StreamlistcontrollerCtrl', ['$scope', 'StreamApiService', 
+		'TableOfContentsRepository', 'RegionGeometryService', 
+		'$anchorScroll',
+		function ($scope, StreamApiService, TableOfContentsRepository, RegionGeometryService, $anchorScroll) {
 		$scope.isSmallView = true;
 
 		var getInitialMapState = function() {
@@ -79,4 +82,4 @@ angular.module('troutDashApp')
 
 			$scope.mapState.isExpanded = !$scope.mapState.isExpanded;
 		};
-	});
+	}]);

@@ -8,7 +8,8 @@
  * Factory in the troutDashApp.
  */
 angular.module('troutDashApp')
-  .factory('GeometryApiService', function ($rootScope, $cacheFactory, $http, $q, $timeout) {
+  .factory('GeometryApiService', ['$rootScope', '$cacheFactory', '$http', '$q', '$timeout',
+    function ($rootScope, $cacheFactory, $http, $q, $timeout) {
     function GeometryApiService() {
 
     }
@@ -40,4 +41,4 @@ angular.module('troutDashApp')
     };
 
     return new GeometryApiService();
-  });
+  }]);

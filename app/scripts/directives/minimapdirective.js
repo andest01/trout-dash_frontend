@@ -10,7 +10,9 @@
 var MINI_MAP_CLASS = '.js-mini-map';
 
 angular.module('troutDashApp')
-  .directive('miniMapDirective', function ($rootScope, GeometryApiService, $q, $timeout) {
+  .directive('miniMapDirective', [
+    '$rootScope', 'GeometryApiService', '$q', '$timeout', 
+    function ($rootScope, GeometryApiService, $q, $timeout) {
     return {
       templateUrl: './views/minimaptemplate.html',
       restrict: 'A',
@@ -428,4 +430,4 @@ angular.module('troutDashApp')
         });
       }
     };
-  });
+  }]);

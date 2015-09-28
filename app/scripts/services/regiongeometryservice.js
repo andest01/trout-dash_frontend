@@ -12,7 +12,8 @@ var createKey = function(stateId, regionId) {
  * Factory in the troutDashApp.
  */
 angular.module('troutDashApp')
-  .factory('RegionGeometryService', function (BaseApiService, RegionApiService, HierarchicalGeometryViewModel) {
+  .factory('RegionGeometryService', ['BaseApiService', 'RegionApiService', 'HierarchicalGeometryViewModel', 
+  	function (BaseApiService, RegionApiService, HierarchicalGeometryViewModel) {
     var RegionGeometryService = function () {
         BaseApiService.call(this);
     };
@@ -49,4 +50,4 @@ angular.module('troutDashApp')
 
     RegionGeometryService.prototype = proto;
     return new RegionGeometryService();
-  });
+  }]);

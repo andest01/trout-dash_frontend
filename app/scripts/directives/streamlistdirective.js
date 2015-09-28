@@ -6,7 +6,8 @@
  * # StreamListDirective
  */
 angular.module('troutDashApp')
-  .directive('streamList', function (StreamApiService) {
+  .directive('streamList', ['StreamApiService', 
+    function (StreamApiService) {
     return {
     	templateUrl: './views/streamlisttemplate.html',
       	restrict: 'A',
@@ -57,4 +58,4 @@ angular.module('troutDashApp')
 			});
       	}
 	};
-});
+}]);

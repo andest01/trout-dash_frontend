@@ -12,7 +12,8 @@ var REGIONS_CACHE_KEY = 'regions';
  * Factory in the troutDashApp.
  */
 angular.module('troutDashApp')
-  .factory('TableOfContentsRepository', function (BaseApiService, RegionGeometryService, HierarchicalGeometryViewModel) {
+  .factory('TableOfContentsRepository', ['BaseApiService', 'RegionGeometryService', 'HierarchicalGeometryViewModel',
+    function (BaseApiService, RegionGeometryService, HierarchicalGeometryViewModel) {
 
     var TableOfContentsRepository = function () {
         BaseApiService.call(this);
@@ -147,4 +148,4 @@ angular.module('troutDashApp')
 
     TableOfContentsRepository.prototype = proto;
     return new TableOfContentsRepository();
-  });
+  }]);

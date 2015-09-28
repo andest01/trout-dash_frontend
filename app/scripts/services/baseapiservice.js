@@ -11,7 +11,8 @@ var DEBUGGER_LATENCY = 800;
 var sessionStorage = window.sessionStorage;
 
 angular.module('troutDashApp')
-  .factory('BaseApiService', function ($rootScope, $cacheFactory, $http, $q, $timeout) {
+  .factory('BaseApiService', ['$rootScope', '$cacheFactory', '$http', '$q', '$timeout',
+    function ($rootScope, $cacheFactory, $http, $q, $timeout) {
     var globalCache = $cacheFactory('du');
 
     function BaseApiService() {
@@ -64,4 +65,4 @@ angular.module('troutDashApp')
     BaseApiService.API_BASE_PATH = '';
 
     return BaseApiService;
-  });
+  }]);

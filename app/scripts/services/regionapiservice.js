@@ -10,7 +10,7 @@ var createPath = function(stateId, regionId) {
  * Factory in the troutDashApp.
  */
 angular.module('troutDashApp')
-  .factory('RegionApiService', function (BaseApiService) {
+  .factory('RegionApiService', ['BaseApiService', function (BaseApiService) {
     var RegionApiService = function () {
         BaseApiService.call(this);
         this.logCache();
@@ -33,4 +33,4 @@ angular.module('troutDashApp')
 
     RegionApiService.prototype = proto;
     return new RegionApiService();
-  });
+  }]);
