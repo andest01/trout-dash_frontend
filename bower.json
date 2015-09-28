@@ -11,7 +11,7 @@
     "angular-touch": "^1.3.0",
     "angular-ui-router": "0.2.13",
     "d3": "3.5.4",
-    "fsm-sticky-header": "*",
+    "fsm-sticky-header": "^1.0.0",
     "topojson": "latest",
     "lodash": "~3.6.0"
   },
