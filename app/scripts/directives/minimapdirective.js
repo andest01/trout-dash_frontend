@@ -24,7 +24,7 @@ angular.module('troutDashApp')
         	selectedCountyId: null,
             width: 45,
             height: 45,
-            isMacro: false,
+            isMacro: true,
 
             loadingRegion: d3.select(null)
         };
