@@ -655,7 +655,10 @@ left: 0;
     -webkit-transition: max-height 0.8s;
     -moz-transition: max-height 0.8s;
     transition: max-height 0.8s;*/
+    background-color: #dfdfdf;
     margin: 0px auto;
+    height: 100%;
+    width: 100%;
     transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -webkit-transition: all 0.5s ease-in-out;
@@ -679,6 +682,11 @@ left: 0;
 }
 
 .somethingContainer-major {
+    width: 98%;
+    height: 94%;
+}
+
+.somethingContainer-minor {
     width: 98%;
     height: 94%;
 }

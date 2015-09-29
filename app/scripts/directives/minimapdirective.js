@@ -17,6 +17,7 @@ angular.module('troutDashApp')
       templateUrl: './views/minimaptemplate.html',
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
+        debugger;
       	scope.minimapState = {
         	isLoading: true,
         	regionGeometries: null,
