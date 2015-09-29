@@ -204,6 +204,7 @@ h4 {
 .region-header {
     padding: 5px 8px;
     background-color: #fccc14;
+    position: sticky;
 }
 
 .region-header .secondary {
