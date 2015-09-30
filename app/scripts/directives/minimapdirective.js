@@ -315,32 +315,32 @@ angular.module('troutDashApp')
                             .data(selectedStreams, function(d) {
                                 return d.Id;
                             });
-                        // streamObjects.enter()
-                        //     .append('path')
-                        //     .attr('class', 'minimap-geography_stream')
-                        //     .attr('data-id', function(d) {
-                        //         return d.id;
-                        //     })
-                        //     .attr('id', function(d) {
-                        //         return 'streamPoint_' + d.id;
-                        //     })
-                        //     .attr('data-name', function(d) {
-                        //         return d.name;
-                        //     })
-                        //     .attr('d', function(d) {
-                        //         return scope.path(d.geometry);
-                        //     })
-                        //     .style('opacity', 0)
-                        //     .transition()
-                        //     .delay(200)
-                        //     .duration(750)
-                        //     .style('opacity', 1);
+                        streamObjects.enter()
+                            .append('path')
+                            .attr('class', 'minimap-geography_stream')
+                            .attr('data-id', function(d) {
+                                return d.id;
+                            })
+                            .attr('id', function(d) {
+                                return 'streamPoint_' + d.id;
+                            })
+                            .attr('data-name', function(d) {
+                                return d.name;
+                            })
+                            .attr('d', function(d) {
+                                return scope.path(d.geometry);
+                            })
+                            .style('opacity', 0)
+                            .transition()
+                            .delay(200)
+                            .duration(750)
+                            .style('opacity', 1);
 
-                        // streamObjects.exit()
-                        //     .transition()
-                        //     .duration(300)
-                        //     .style('opacity', 0)
-                        //     .remove();
+                        streamObjects.exit()
+                            .transition()
+                            .duration(300)
+                            .style('opacity', 0)
+                            .remove();
 
                     }
 
