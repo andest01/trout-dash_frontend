@@ -242,18 +242,18 @@ angular.module('troutDashApp')
 
                     var drawGeometryToMap = function(states, regions, counties) {
                         // scope.countiesGroup = scope.counties;
-                        scope.counties.selectAll('path.minimap-geography_county')
-                            .data(counties, function(d) {
-                                return d.id;
-                            })
-                            .enter().append('path')
-                            .attr('d', function(d) {
-                                return scope.path(d.geometry);
-                            })
-                            .attr('data-id', function(d) {
-                                return getFipsCodeSelector(d);
-                            })
-                            .attr('class', 'minimap-geography_county');
+                        // scope.counties.selectAll('path.minimap-geography_county')
+                        //     .data(counties, function(d) {
+                        //         return d.id;
+                        //     })
+                        //     .enter().append('path')
+                        //     .attr('d', function(d) {
+                        //         return scope.path(d.geometry);
+                        //     })
+                        //     .attr('data-id', function(d) {
+                        //         return getFipsCodeSelector(d);
+                        //     })
+                        //     .attr('class', 'minimap-geography_county');
 
                         scope.regions.selectAll('path.minimap-geogrpahy_region')
                             .data(regions, function(d) {
