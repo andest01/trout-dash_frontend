@@ -58,7 +58,7 @@ angular.module('troutDashApp')
 					$scope.mapState.selectedRegionGeometry = [newSelectedRegionGeometry];
 					$scope.mapState.selectedRegion = [regionModel];
 					// just scroll all the way to the top on region changes.
-					$anchorScroll('top');
+					// $anchorScroll('top');
 					return newSelectedRegionGeometry;
 				});
 		};
