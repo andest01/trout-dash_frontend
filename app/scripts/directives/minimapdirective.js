@@ -242,18 +242,18 @@ angular.module('troutDashApp')
 
                     var drawGeometryToMap = function(states, regions, counties) {
                         // scope.countiesGroup = scope.counties;
-                        // scope.counties.selectAll('path.minimap-geography_county')
-                        //     .data(counties, function(d) {
-                        //         return d.id;
-                        //     })
-                        //     .enter().append('path')
-                        //     .attr('d', function(d) {
-                        //         return scope.path(d.geometry);
-                        //     })
-                        //     .attr('data-id', function(d) {
-                        //         return getFipsCodeSelector(d);
-                        //     })
-                        //     .attr('class', 'minimap-geography_county');
+                        scope.counties.selectAll('path.minimap-geography_county')
+                            .data(counties, function(d) {
+                                return d.id;
+                            })
+                            .enter().append('path')
+                            .attr('d', function(d) {
+                                return scope.path(d.geometry);
+                            })
+                            .attr('data-id', function(d) {
+                                return getFipsCodeSelector(d);
+                            })
+                            .attr('class', 'minimap-geography_county');
 
                         scope.regions.selectAll('path.minimap-geogrpahy_region')
                             .data(regions, function(d) {
@@ -332,13 +332,13 @@ angular.module('troutDashApp')
                             })
                             .style('opacity', 0)
                             .transition()
-                            .delay(200)
+                            .delay(300)
                             .duration(750)
-                            .style('opacity', 1);
+                            .style('opacity', 0.8);
 
                         streamObjects.exit()
                             .transition()
-                            .duration(300)
+                            .duration(100)
                             .style('opacity', 0)
                             .remove();
 
