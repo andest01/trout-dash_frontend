@@ -311,36 +311,37 @@ angular.module('troutDashApp')
                         var selectedStreams = _.unique(_.flatten(arrayOfStreams), 'Id');
 
 
-                        var streamObjects = scope.streams.selectAll('path.minimap-geography_stream')
+                        var streamObjects = scope.streams.selectAll('circle.minimap-geography_stream')
                             .data(selectedStreams, function(d) {
                                 return d.Id;
                             });
-                        // streamObjects.enter()
-                        //     .append('path')
-                        //     .attr('class', 'minimap-geography_stream')
-                        //     .attr('data-id', function(d) {
-                        //         return d.id;
-                        //     })
-                        //     .attr('id', function(d) {
-                        //         return 'streamPoint_' + d.id;
-                        //     })
-                        //     .attr('data-name', function(d) {
-                        //         return d.name;
-                        //     })
-                        //     .attr('d', function(d) {
-                        //         return scope.path(d.geometry);
-                        //     })
-                        //     .style('opacity', 0)
-                        //     .transition()
-                        //     .delay(300)
-                        //     .duration(750)
-                        //     .style('opacity', 0.8);
+                        streamObjects.enter()
+                            .append('circle')
+                            .attr('class', 'minimap-geography_stream')
+                            .attr('data-id', function(d) {
+                                return d.id;
+                            })
+                            .attr('id', function(d) {
+                                return 'streamPoint_' + d.id;
+                            })
+                            .attr('data-name', function(d) {
+                                return d.name;
+                            })
+                            .attr('transform', function(d) {
+                                return 'translate(' + scope.path.centroid(d.geometry) + ')';
+                            })
+                            .attr('r', 0.15)
+                            .style('opacity', 0)
+                            .transition()
+                            .delay(300)
+                            .duration(750)
+                            .style('opacity', 0.8);
 
-                        // streamObjects.exit()
-                        //     .transition()
-                        //     .duration(100)
-                        //     .style('opacity', 0)
-                        //     .remove();
+                        streamObjects.exit()
+                            .transition()
+                            .duration(100)
+                            .style('opacity', 0)
+                            .remove();
 
                     }
 
