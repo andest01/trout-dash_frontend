@@ -22,8 +22,8 @@ angular.module('troutDashApp')
                         regionGeometries: null,
                         selectedRegionId: null,
                         selectedCountyId: null,
-                        width: 45,
-                        height: 45,
+                        width: 800,
+                        height: 800,
                         isMacro: true,
 
                         loadingRegion: d3.select(null)
@@ -151,7 +151,7 @@ angular.module('troutDashApp')
                             .translate([0, 0])
                             .scale(1)
                             .scaleExtent([1, 8])
-                            .size([40, 40])
+                            .size([800, 800])
                             .on('zoom', zoomed);
 
                         scope.svg = d3.select(element[0]).select(MINI_MAP_CLASS)
@@ -296,7 +296,7 @@ angular.module('troutDashApp')
                     }
 
                     function zoomed() {
-                        scope.root.style('stroke-width', 1.5 / d3.event.scale + 'px');
+                        scope.root.style('stroke-width', 3.5 / d3.event.scale + 'px');
                         scope.root.attr('transform', 'translate(' + d3.event.translate + ')scale(' + d3.event.scale + ')');
                     }
 
@@ -330,7 +330,7 @@ angular.module('troutDashApp')
                             .attr('transform', function(d) {
                                 return 'translate(' + scope.path.centroid(d.geometry) + ')';
                             })
-                            .attr('r', 0.15);
+                            .attr('r', 4.15);
                             // .style('opacity', 0)
                             // .transition()
                             // .delay(150)

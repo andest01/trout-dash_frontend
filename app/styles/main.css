@@ -602,7 +602,7 @@ left: 0;
 .minimap-geogrpahy_region {
     fill: none;
     stroke: #463838;
-    stroke-width: 0.2;
+    stroke-width: 3.2;
     pointer-events: visible;
     stroke-linejoin: round;
 }
@@ -639,7 +639,7 @@ left: 0;
 .minimap-streamPoints {
     fill: #4e7f84;
     stroke: #4e7f84;
-    stroke-width: 0.2;
+    stroke-width: 5.2;
 }
 
 .something {
@@ -656,16 +656,20 @@ left: 0;
     -webkit-transition: max-height 0.8s;
     -moz-transition: max-height 0.8s;
     transition: max-height 0.8s;*/
+/*    transform-origin: top right;
+    will-change: transform;
     background-color: #dfdfdf;
     margin: 0px auto;
     height: 100%;
-    width: 100%;
-    transition: all 0.5s ease-in-out;
+    width: 100%;*/
+/*    transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -webkit-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;*/
 }
+
+
 
 .somethingContainer {
     width: 45px;
@@ -674,17 +678,30 @@ left: 0;
     position: fixed;
     right: 9px;
     top: 2px;
+        transform-origin: top right;
+    filter: none; 
+-webkit-filter: blur(0px); 
+-moz-filter: blur(0px); 
+-ms-filter: blur(0px);
+filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
     /*background: blue;*/
-    transition: all 0.4s ease-in-out;
+/*    transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
     -webkit-transition: all 0.4s ease-in-out;
     -o-transition: all 0.4s ease-in-out;
-    -ms-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;*/
 }
 
 .somethingContainer-major {
-    width: 98%;
-    height: 94%;
+/*    width: 98%;
+    height: 94%;*/
+    animation: slideGrow 1s forwards;
+}
+
+@keyframes slideGrow {
+    to {
+        transform:    scale(13);
+    }
 }
 
 .somethingContainer-minor {
