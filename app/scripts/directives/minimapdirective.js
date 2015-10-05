@@ -196,8 +196,8 @@ angular.module('troutDashApp')
 
                                         resetLoadRegion();
                                         // set controller's state
-                                        $timeout(minifyMinimap, 500);
-                                    }, 1000);
+                                        $timeout(minifyMinimap, 800);
+                                    }, 300);
 
                                 });
 
@@ -333,8 +333,8 @@ angular.module('troutDashApp')
                             .attr('r', 0.15)
                             .style('opacity', 0)
                             .transition()
-                            .delay(300)
-                            .duration(750)
+                            .delay(150)
+                            .duration(2000)
                             .style('opacity', 0.8);
 
                         streamObjects.exit()
