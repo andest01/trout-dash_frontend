@@ -330,12 +330,12 @@ angular.module('troutDashApp')
                             .attr('transform', function(d) {
                                 return 'translate(' + scope.path.centroid(d.geometry) + ')';
                             })
-                            .attr('r', 0.15)
-                            .style('opacity', 0)
-                            .transition()
-                            .delay(150)
-                            .duration(2000)
-                            .style('opacity', 0.8);
+                            .attr('r', 0.15);
+                            // .style('opacity', 0)
+                            // .transition()
+                            // .delay(150)
+                            // .duration(2000)
+                            // .style('opacity', 0.8);
 
                         streamObjects.exit()
                             .transition()
