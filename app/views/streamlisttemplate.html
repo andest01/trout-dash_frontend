@@ -1,20 +1,20 @@
 <div data-ng-cloak id="js-list-container">
     <!--Region Header -->
     <div data-ng-repeat="region in mapState.selectedRegion | orderBy:'name'" id="{{::getRegionId(region)}}">
-        <div fsm-sticky-header scroll-body="getRegionScrollBodyId(region)" scroll-stop="0" scroll-object="region" z-index-override="10100" class="sectionTitle region-header"><a id="region-hdr_{{region.id}}" href="#">{{::region.name}}</a></div>
+        <div  scroll-stop="0" scroll-object="region" z-index-override="10100" class="sectionTitle region-header"><a id="region-hdr_{{region.id}}" href="#">{{::region.name}}</a></div>
         <!--County Header -->
         <div data-ng-repeat="county in ::region.children  | orderBy:'name'" id="{{::getCountyId(county)}}">
             <!--F FSM Sticky Header Placeholder County Header -->
-            <div fsm-sticky-header scroll-body="getCountyScrollBodyId(county)" scroll-stop="23" scroll-object="county" z-index-override="10000" class="sectionTitle region-header">{{::county.name}} Co.
+            <div  scroll-stop="23" scroll-object="county" z-index-override="10000" class="sectionTitle region-header">{{::county.name}} Co.
             </div>
-            <div ng-class-odd="'box'" ng-class-even="'box box-secondary'" data-ng-repeat="stream in county.children   | orderBy:'name'">
+            <div ng-class-odd="'box'" ng-class-even="'box box-secondary'" data-ng-repeat="stream in county.children    | orderBy:'name'">
                 <div class="box" data-stream-id="{{::stream.Id}}" data-ng-click="expand()">
                     <div class="grid-row">
                         <div class="containerHeader grid-row box-hd">
                             <div class="grid-row-col grid-row-col_9of12">
                                 <div class="grid-row-col grid-cow-col_3of12">
-                                    <div data-stream-ratio>
-                                    </div>
+                                    <!-- <div data-stream-ratio>
+                                    </div> -->
                                 </div>
                                 <h2 class="grid-row-col grid-cow-col_9of12">
                                     <a data-ng-click="selectStream(stream)" href="https://www.google.com/maps/@{{::stream.CentroidLongitude}},{{::stream.CentroidLatitude}},14z"  class="link js-stream-link sectionTitle" >{{::stream.Name}}
@@ -25,15 +25,15 @@
                             </div>
                             <div class="grid-row-col grid-row-col_3of12">
                                 <div class="grid-row-col grid-row-col_4of12">
-                                    <div data-species-summary>
-                                    </div>
+                                    <!-- <div data-species-summary>
+                                    </div> -->
                                 </div>
                                 <div class="grid-row-col grid-row-col_8of12 statusText" data-ng-if="isSmall === false">{{::stream.AlertMessage}}
                                 </div>
                                 <div class="grid-row-col grid-row-col_8of12" data-ng-if="isSmall">
                                     <div class="grid-row-col grid-row-col_6of12">
-                                        <div data-stream-ratio>
-                                        </div>
+                                        <!-- <div data-stream-ratio>
+                                        </div> -->
                                     </div>
                                     <div class="grid-row-col grid-row-col_6of12">
                                         <span data-ng-class="{'alert-none': !isAlertSymbolDisplayed()}">
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div data-ng-show="isSmall === false">
+                        <div data-ng-if="isSmall === false">
                             <div class="containerBody grid-row">
                                 <div class="grid-row-col_12of12">
                                     <div data-stream-line></div>
