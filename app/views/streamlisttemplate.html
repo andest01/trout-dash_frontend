@@ -1,11 +1,11 @@
 <div data-ng-cloak id="js-list-container">
     <!--Region Header -->
     <div data-ng-repeat="region in mapState.selectedRegion | orderBy:'name'" id="{{::getRegionId(region)}}">
-        <div fsm-sticky-header scroll-body="getRegionScrollBodyId(region)" scroll-stop="0" scroll-object="region" z-index-override="10100" class="sectionTitle region-header"><a id="region-hdr_{{region.id}}" href="#">{{::region.name}}</a></div>
+        <div scroll-body="getRegionScrollBodyId(region)" scroll-stop="0" scroll-object="region" z-index-override="10100" class="sectionTitle region-header"><a id="region-hdr_{{region.id}}" href="#">{{::region.name}}</a></div>
         <!--County Header -->
         <div data-ng-repeat="county in ::region.children  | orderBy:'name'" id="{{::getCountyId(county)}}">
             <!--F FSM Sticky Header Placeholder County Header -->
-            <div fsm-sticky-header scroll-body="getCountyScrollBodyId(county)" scroll-stop="23" scroll-object="county" z-index-override="10000" class="sectionTitle region-header">{{::county.name}} Co.
+            <div scroll-body="getCountyScrollBodyId(county)" scroll-stop="23" scroll-object="county" z-index-override="10000" class="sectionTitle region-header">{{::county.name}} Co.
             </div>
             <div ng-class-odd="'box'" ng-class-even="'box box-secondary'" data-ng-repeat="stream in county.children   | orderBy:'name'">
                 <div class="box" data-stream-id="{{::stream.Id}}" data-ng-click="expand()">
