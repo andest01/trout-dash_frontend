@@ -36,7 +36,6 @@ angular.module('troutDashApp')
 
 		var promise = this.doCall({}, '/data/tableOfContents.topo.json')
 			.then(function(regionTopoJson) {
-                regionTopoJson = _.cloneDeep(regionTopoJson);
                 var state = topojson.feature(regionTopoJson, regionTopoJson.objects.state);
                 var regions = topojson.feature(regionTopoJson, regionTopoJson.objects.region);
                 var counties = topojson.feature(regionTopoJson, regionTopoJson.objects.county);
