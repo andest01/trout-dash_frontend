@@ -36,6 +36,7 @@ angular.module('troutDashApp')
 
 		var promise = this.doCall({}, '/data/tableOfContents.topo.json')
 			.then(function(regionTopoJson) {
+                regionTopoJson = _.cloneDeep(regionTopoJson);
                 var state = topojson.feature(regionTopoJson, regionTopoJson.objects.state);
                 var regions = topojson.feature(regionTopoJson, regionTopoJson.objects.region);
                 var counties = topojson.feature(regionTopoJson, regionTopoJson.objects.county);
@@ -109,6 +110,7 @@ angular.module('troutDashApp')
                         streamModel.centroidLongitude = properties.CentroidLongitude;
                         streamModel.centroidLatitude = properties.CentroidLatitude;
                         _.extend(streamModel, properties);
+                        console.table(streamModel.AccessPoints);
                         streamModel.type = 'streamCentroid';
                         return streamModel;})
                     .sortBy('name')
@@ -141,6 +143,7 @@ angular.module('troutDashApp')
 
                 this.logCache();
                 return stateHash;
+
 			}.bind(this));
         this.cache.put(key, promise);
         return promise;

@@ -26,15 +26,33 @@ angular.module('troutDashApp')
       		}
       	};
 
-        
-
       	scope.getAlertMessage = function() {
       		return scope.stream.AlertMessage;
       	};
 
         scope.expand = function() {
           scope.isSmall = !scope.isSmall;
-        }
+        };
+
+        scope.getCounties = function() {
+            if (!scope.stream.Counties) {
+                return null;
+            }
+
+            return scope.stream.Counties.map(function(c) { return c.Name; }).join(',');
+        };
+
+        scope.getAlternativeNames = function() {
+            if (!scope.stream.LocalNames) {
+                return null;
+            }
+
+            if (scope.stream.LocalNames.length === 0) {
+                return '';
+            }
+
+            return 'aka ' + scope.stream.LocalNames.join(',');
+        };
       }
     };
   });

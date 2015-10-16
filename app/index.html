@@ -1,6 +1,7 @@
 <!doctype html>
 <html class="no-js">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
@@ -13,38 +14,23 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-  </head>
-  <body ng-app="troutDashApp">
+</head>
+
+<body ng-app="troutDashApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
     <!-- Add your site or application content here -->
-
-
     <div class="container">
         <div ng-controller="StreamlistcontrollerCtrl">
             <div data-mini-map-directive>
             </div>
-<!--           <div class="somethingContainer somethingContainer-major">
-            <div class="something" data-mini-map-directive>
-                
+            <div data-stream-list>
             </div>
-
-            </div> -->
-<!--                 <div data-mini-map-test-harness-directive>
-                </div> -->
-          
-                <div data-stream-list>
-
-                </div>
         </div>
     </div>
-
-
-
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-<!--      <script>
+    <!--      <script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
        (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
        r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
@@ -53,7 +39,6 @@
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
     </script> -->
-
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -70,7 +55,6 @@
     <script src="bower_components/lodash/lodash.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
@@ -100,4 +84,5 @@
     <script src="scripts/services/hierarchicalgeometrycollection.js"></script>
     <!-- endbuild -->
 </body>
+
 </html>

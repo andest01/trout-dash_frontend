@@ -5,7 +5,7 @@
                 <h2>
                     <a data-ng-click="selectStream(stream)" href="https://www.google.com/maps/@{{::stream.CentroidLongitude}},{{::stream.CentroidLatitude}},14z"  class="link js-stream-link sectionTitle" >{{::stream.Name}}</a>
                     <div class="box-hd_minor">{{getAlternativeNames()}}</div>
-                    <div data-ng-if="isSmall == false" class="box-hd_minor">{{::getCounties()}} Co.</div>
+                    <div data-ng-if="isSmall == false" class="box-hd_minor">{{getCounties()}} Co.</div>
 
                 </h2>
             </div>
@@ -47,7 +47,7 @@
             
         </div>  
 
-        <div data-ng-show="isSmall === false" >
+        <div data-ng-if="isSmall === false" >
             <div class="containerBody grid-row">
                 <div class="grid-row-col_12of12">
                     <div data-stream-line></div>
@@ -55,8 +55,14 @@
             </div>
 
             <div class="grid-row">
-                <div class="grid-row-col grid-row-col_9of12">
-                    <div data-ng-if="stream.Restrictions.length > 0" data-restriction-legend></div>
+                <div class="grid-row-col grid-row-col_9of12 media_list">
+                    <div data-ng-show="stream.Restrictions.length > 0" data-restriction-legend></div>
+                    <div data-ng-repeat="accessPoint in stream.AccessPoints">
+                        <span data-ng-show="accessPoint.IsOverOrNearPublicLand">
+                            (public!)    
+                        </span>
+                        <a target="_blank" href="https://www.google.com/maps/@{{accessPoint.Latitude}},{{accessPoint.Longitude}},17z">{{accessPoint.Name}}</a>
+                    </div>
                 </div>
                 <div class="grid-row-col grid-row-col_3of12">
                     <div data-stream-ratio-text>

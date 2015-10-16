@@ -16,10 +16,9 @@ angular.module('troutDashApp')
 			if (length <= 0) {
 				return;
 			}
-
 			var inverseLength = 1/length;
 			scope.stage = {
-				width: 292
+				width: element.width()
 			};
 
             var createTickMarks = function(LengthMiles) {
@@ -103,6 +102,8 @@ angular.module('troutDashApp')
                 scope.lakes = scope.stream.Lakes.Sections.map(function(segment) {
                     return new LinearReferenceViewModel(segment, inverseLength);
                 });
+
+                scope.accessPoints = scope.stream.AccessPoints;
 
                 // Stage
                 scope.streamLine.lakes = scope.streamLine.append('g')
@@ -198,25 +199,7 @@ angular.module('troutDashApp')
                     .attr('class', 'tick');
             };
 
-            scope.getCounties = function() {
-                if (!scope.stream.Counties) {
-                    return null;
-                }
-
-                return scope.stream.Counties.map(function(c) { return c.Name; }).join(',');
-            };
-
-            scope.getAlternativeNames = function() {
-                if (!scope.stream.LocalNames) {
-                    return null;
-                }
-
-                if (scope.stream.LocalNames.length === 0) {
-                    return '';
-                }
-
-                return 'aka ' + scope.stream.LocalNames.join(',');
-            };
+            
 
             scope.drawLines();
 		}
