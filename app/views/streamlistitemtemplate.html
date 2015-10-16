@@ -1,8 +1,8 @@
-<div class="box" data-stream-id="{{::stream.Id}}" data-ng-click="expand()">
+<div class="box" data-stream-id="{{::stream.Id}}" >
     <div class="grid-row">
         <div class="containerHeader grid-row box-hd">
         <div class="grid-row-col grid-row-col_9of12">
-                <h2>
+                <h2 data-ng-click="expand()">
                     <!-- data-ng-click="selectStream(stream)" -->
                     <span  class="link js-stream-link sectionTitle" >{{::stream.Name}}</span>
                     <div class="box-hd_minor">{{getAlternativeNames()}}</div>
