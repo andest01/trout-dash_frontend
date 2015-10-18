@@ -127,9 +127,7 @@ angular.module('troutDashApp')
 
                 
 
-
-
-
+                
 
                 // TROUT STREAM SECTIONS
                 scope.publicSegments = scope.stream.TroutStreams.Sections.map(function(segment) {
@@ -181,6 +179,24 @@ angular.module('troutDashApp')
                         .attr('height', 5)
                         .attr('class', 'restriction');
                 });
+
+scope.streamLine.roadIntersections = scope.streamLine.append('g')
+                    .attr('class', 'stream-line_roadIntersections');         
+
+
+                scope.streamLine.roadIntersections.selectAll('circle')
+                    .data(scope.accessPoints).enter()
+                    .append('circle')
+                    .attr('height', 4)
+                    .attr('width', 4)
+                    .attr('cy', 5)
+                    .attr('r', 2)
+                    .attr('cx', function(d) {
+                        return (1 - d.LinearOffset) * scope.stage.width;
+                    })
+                    .attr('class', function(d) {
+                        return d.IsOverOrNearPublicLand ? 'roadIntersetion_public' : 'roadIntersetion_private';
+                    });
 
                 var tickMarks = createTickMarks(length);
                 var firstMark = tickMarks[0];

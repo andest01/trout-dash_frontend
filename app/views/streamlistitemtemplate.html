@@ -58,13 +58,13 @@
                 <div class="grid-row-col grid-row-col_9of12 media_list">
                     <div data-ng-show="stream.Restrictions.length > 0" data-restriction-legend></div>
                     <div data-ng-repeat="accessPoint in stream.AccessPoints | orderBy:'LinearOffset':true">
-                        <span class="heading" data-ng-show="accessPoint.IsOverOrNearPublicLand">
+<!--                         <span class="heading" data-ng-show="accessPoint.IsOverOrNearPublicLand">
                             (PUBLIC!)    
-                        </span>
-                        <span class="heading" data-ng-show="accessPoint.IsOverOrNearPublicLand === false">
+                        </span> -->
+<!--                         <span class="heading" data-ng-show="accessPoint.IsOverOrNearPublicLand === false">
                             (private)    
-                        </span>
-                        <a class="heading" target="_blank" href="https://www.google.com/maps/@{{accessPoint.Latitude}},{{accessPoint.Longitude}},17z">{{accessPoint.Name}}</a>
+                        </span> -->
+                        <a class="heading" data-ng-class="{'roadIntersetion_public': accessPoint.IsOverOrNearPublicLand}" target="_blank" href="https://www.google.com/maps/@{{accessPoint.Latitude}},{{accessPoint.Longitude}},17z">{{accessPoint.Name}}</a>
                     </div>
                 </div>
                 <div class="grid-row-col grid-row-col_3of12">
